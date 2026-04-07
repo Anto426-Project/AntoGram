@@ -8,8 +8,7 @@ import org.telegram.tgnet.model.TlGen_Object
 import org.telegram.tgnet.model.TlGen_Vector
 
 public sealed class TlGen_channels_ChannelParticipants : TlGen_Object {
-  public data object TL_channels_channelParticipantsNotModified :
-      TlGen_channels_ChannelParticipants() {
+  public data object TL_channels_channelParticipantsNotModified : TlGen_channels_ChannelParticipants() {
     public const val MAGIC: UInt = 0xF0173FE9U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

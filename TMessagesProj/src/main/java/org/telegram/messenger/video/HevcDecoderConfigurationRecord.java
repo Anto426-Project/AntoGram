@@ -1,11 +1,6 @@
 package org.telegram.messenger.video;
 
 
-import static com.googlecode.mp4parser.authoring.tracks.h265.NalUnitTypes.NAL_TYPE_PPS_NUT;
-import static com.googlecode.mp4parser.authoring.tracks.h265.NalUnitTypes.NAL_TYPE_PREFIX_SEI_NUT;
-import static com.googlecode.mp4parser.authoring.tracks.h265.NalUnitTypes.NAL_TYPE_SPS_NUT;
-import static com.googlecode.mp4parser.authoring.tracks.h265.NalUnitTypes.NAL_TYPE_VPS_NUT;
-
 import androidx.annotation.NonNull;
 
 import com.coremedia.iso.IsoTypeReader;
@@ -15,7 +10,6 @@ import com.coremedia.iso.boxes.sampleentry.VisualSampleEntry;
 import com.google.android.exoplayer2.util.Log;
 import com.googlecode.mp4parser.authoring.tracks.CleanInputStream;
 import com.googlecode.mp4parser.authoring.tracks.h265.H265TrackImpl;
-import com.googlecode.mp4parser.authoring.tracks.h265.NalUnitHeader;
 import com.googlecode.mp4parser.util.ByteBufferByteChannel;
 
 import org.telegram.messenger.Utilities;
@@ -29,6 +23,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class HevcDecoderConfigurationRecord {
+    private static final int NAL_TYPE_VPS_NUT = 32;
+    private static final int NAL_TYPE_SPS_NUT = 33;
+    private static final int NAL_TYPE_PPS_NUT = 34;
+    private static final int NAL_TYPE_PREFIX_SEI_NUT = 39;
+
     int configurationVersion;
 
     int general_profile_space;

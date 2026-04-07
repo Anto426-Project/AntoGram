@@ -15,8 +15,7 @@ public sealed class TlGen_BusinessAwayMessageSchedule : TlGen_Object {
     }
   }
 
-  public data object TL_businessAwayMessageScheduleOutsideWorkHours :
-      TlGen_BusinessAwayMessageSchedule() {
+  public data object TL_businessAwayMessageScheduleOutsideWorkHours : TlGen_BusinessAwayMessageSchedule() {
     public const val MAGIC: UInt = 0xC3F2F501U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

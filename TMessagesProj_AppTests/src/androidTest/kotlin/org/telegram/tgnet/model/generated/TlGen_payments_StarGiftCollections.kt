@@ -7,8 +7,7 @@ import org.telegram.tgnet.model.TlGen_Object
 import org.telegram.tgnet.model.TlGen_Vector
 
 public sealed class TlGen_payments_StarGiftCollections : TlGen_Object {
-  public data object TL_payments_starGiftCollectionsNotModified :
-      TlGen_payments_StarGiftCollections() {
+  public data object TL_payments_starGiftCollectionsNotModified : TlGen_payments_StarGiftCollections() {
     public const val MAGIC: UInt = 0xA0BA4F17U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

@@ -8,8 +8,7 @@ import org.telegram.tgnet.model.TlGen_Object
 import org.telegram.tgnet.model.TlGen_Vector
 
 public sealed class TlGen_messages_AvailableReactions : TlGen_Object {
-  public data object TL_messages_availableReactionsNotModified : TlGen_messages_AvailableReactions()
-      {
+  public data object TL_messages_availableReactionsNotModified : TlGen_messages_AvailableReactions() {
     public const val MAGIC: UInt = 0x9F071957U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

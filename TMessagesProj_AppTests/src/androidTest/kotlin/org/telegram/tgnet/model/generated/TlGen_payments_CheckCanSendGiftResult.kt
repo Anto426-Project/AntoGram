@@ -6,8 +6,7 @@ import org.telegram.tgnet.model.TlGen_Object
 import org.telegram.tgnet.model.TlGen_Vector
 
 public sealed class TlGen_payments_CheckCanSendGiftResult : TlGen_Object {
-  public data object TL_payments_checkCanSendGiftResultOk : TlGen_payments_CheckCanSendGiftResult()
-      {
+  public data object TL_payments_checkCanSendGiftResultOk : TlGen_payments_CheckCanSendGiftResult() {
     public const val MAGIC: UInt = 0x374FA7ADU
 
     public override fun serializeToStream(stream: OutputSerializedData) {

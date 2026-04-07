@@ -23,8 +23,7 @@ public sealed class TlGen_channels_SponsoredMessageReportResult : TlGen_Object {
     }
   }
 
-  public data object TL_channels_sponsoredMessageReportResultAdsHidden :
-      TlGen_channels_SponsoredMessageReportResult() {
+  public data object TL_channels_sponsoredMessageReportResultAdsHidden : TlGen_channels_SponsoredMessageReportResult() {
     public const val MAGIC: UInt = 0x3E3BCF2FU
 
     public override fun serializeToStream(stream: OutputSerializedData) {
@@ -32,8 +31,7 @@ public sealed class TlGen_channels_SponsoredMessageReportResult : TlGen_Object {
     }
   }
 
-  public data object TL_channels_sponsoredMessageReportResultReported :
-      TlGen_channels_SponsoredMessageReportResult() {
+  public data object TL_channels_sponsoredMessageReportResultReported : TlGen_channels_SponsoredMessageReportResult() {
     public const val MAGIC: UInt = 0xAD798849U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

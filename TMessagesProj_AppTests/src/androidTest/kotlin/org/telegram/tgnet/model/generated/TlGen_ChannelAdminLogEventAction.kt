@@ -123,8 +123,7 @@ public sealed class TlGen_ChannelAdminLogEventAction : TlGen_Object {
     }
   }
 
-  public data object TL_channelAdminLogEventActionParticipantJoin :
-      TlGen_ChannelAdminLogEventAction() {
+  public data object TL_channelAdminLogEventActionParticipantJoin : TlGen_ChannelAdminLogEventAction() {
     public const val MAGIC: UInt = 0x183040D3U
 
     public override fun serializeToStream(stream: OutputSerializedData) {
@@ -132,8 +131,7 @@ public sealed class TlGen_ChannelAdminLogEventAction : TlGen_Object {
     }
   }
 
-  public data object TL_channelAdminLogEventActionParticipantLeave :
-      TlGen_ChannelAdminLogEventAction() {
+  public data object TL_channelAdminLogEventActionParticipantLeave : TlGen_ChannelAdminLogEventAction() {
     public const val MAGIC: UInt = 0xF89777F2U
 
     public override fun serializeToStream(stream: OutputSerializedData) {

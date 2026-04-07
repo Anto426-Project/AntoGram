@@ -345,8 +345,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public Runnable navigateToPremiumGiftCallback;
 
     private Runnable lockRunnable;
+    private final List<Runnable> onUserLeaveHintCallbacks = new ArrayList<>();
 
-    private List<Runnable> onUserLeaveHintListeners = new ArrayList<>();
 
     private static final int PLAY_SERVICES_REQUEST_CHECK_SETTINGS = 140;
     public static final int SCREEN_CAPTURE_REQUEST_CODE = 520;
@@ -1044,19 +1044,19 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         FloatingDebugController.setActive(this, SharedConfig.isFloatingDebugActive, false);
     }
 
-    public void addOnUserLeaveHintListener(Runnable callback) {
-        onUserLeaveHintListeners.add(callback);
-    }
-
-    public void removeOnUserLeaveHintListener(Runnable callback) {
-        onUserLeaveHintListeners.remove(callback);
-    }
-
     private BaseFragment getClientNotActivatedFragment() {
         if (LoginActivity.loadCurrentState(false, currentAccount).getInt("currentViewNum", 0) != 0) {
             return new LoginActivity();
         }
         return new IntroActivity();
+    }
+
+    public void addUserLeaveHintCallback(Runnable callback) {
+        onUserLeaveHintCallbacks.add(callback);
+    }
+
+    public void removeUserLeaveHintCallback(Runnable callback) {
+        onUserLeaveHintCallbacks.remove(callback);
     }
 
     public FireworksOverlay getFireworksOverlay() {
@@ -6779,8 +6779,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
         pipActivityHandler.onUserLeaveHint();
-        for (Runnable callback : onUserLeaveHintListeners) {
+        for (Runnable callback : onUserLeaveHintCallbacks) {
             callback.run();
         }
         if (actionBarLayout != null) {
