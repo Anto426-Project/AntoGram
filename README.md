@@ -1,39 +1,59 @@
-## Telegram messenger for Android
+# Antogram for Android
 
-[Telegram](https://telegram.org) is a messaging app with a focus on speed and security. It’s superfast, simple and free.
-This repo contains the official source code for [Telegram App for Android](https://play.google.com/store/apps/details?id=org.telegram.messenger).
+Antogram is an Android client based on the Telegram codebase.
 
-## Creating your Telegram Application
+- Repository: https://github.com/Anto426/Antogram
+- Platform docs: https://core.telegram.org/api
 
-We welcome all developers to use our API and source code to create applications on our platform.
-There are several things we require from **all developers** for the moment.
+## Overview
 
-1. [**Obtain your own api_id**](https://core.telegram.org/api/obtaining_api_id) for your application.
-2. Please **do not** use the name Telegram for your app — or make sure your users understand that it is unofficial.
-3. Kindly **do not** use our standard logo (white paper plane in a blue circle) as your app's logo.
-3. Please study our [**security guidelines**](https://core.telegram.org/mtproto/security_guidelines) and take good care of your users' data and privacy.
-4. Please remember to publish **your** code too in order to comply with the licences.
+This repository contains the Android sources for Antogram.
+Since it is based on Telegram APIs and MTProto, follow Telegram platform rules and security requirements when redistributing builds.
 
-### API, Protocol documentation
+## Requirements
 
-Telegram API manuals: https://core.telegram.org/api
+Use a toolchain aligned with the current Gradle configuration:
 
-MTproto protocol manuals: https://core.telegram.org/mtproto
+- Android Studio (recent stable)
+- JDK 17 or JDK 21
+- Android SDK Platform 36
+- Android NDK 21.4.7075529
 
-### Compilation Guide
+## Quick Start
 
-**Note**: In order to support [reproducible builds](https://core.telegram.org/reproducible-builds), this repo contains dummy release.keystore,  google-services.json and filled variables inside BuildVars.java. Before publishing your own APKs please make sure to replace all these files with your own.
+1. Clone the repository.
 
-You will require Android Studio 3.4, Android NDK rev. 20 and Android SDK 8.1
+```bash
+git clone https://github.com/Anto426/Antogram.git
+```
 
-1. Download the Telegram source code from https://github.com/DrKLO/Telegram ( git clone https://github.com/DrKLO/Telegram.git )
-2. Copy your release.keystore into TMessagesProj/config
-3. Fill out RELEASE_KEY_PASSWORD, RELEASE_KEY_ALIAS, RELEASE_STORE_PASSWORD in gradle.properties to access your  release.keystore
-4.  Go to https://console.firebase.google.com/, create two android apps with application IDs org.telegram.messenger and org.telegram.messenger.beta, turn on firebase messaging and download google-services.json, which should be copied to the same folder as TMessagesProj.
-5. Open the project in the Studio (note that it should be opened, NOT imported).
-6. Fill out values in TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java – there’s a link for each of the variables showing where and which data to obtain.
-7. You are ready to compile Telegram.
+2. Copy your release keystore into `TMessagesProj/config`.
+3. Set `RELEASE_KEY_PASSWORD`, `RELEASE_KEY_ALIAS`, and `RELEASE_STORE_PASSWORD` in `gradle.properties`.
+4. Configure Firebase and place `google-services.json` in each required app module.
+5. Open the folder directly in Android Studio (open project, not legacy import).
+6. Configure app variables in `TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java`.
+7. Build from Android Studio or CLI.
 
-### Localization
+Windows users can build from project root with:
 
-We moved all translations to https://translations.telegram.org/en/android/. Please use it.
+```powershell
+.\gradlew.bat assemble
+```
+
+## Branding and Compliance
+
+1. Generate your own `api_id`: https://core.telegram.org/api/obtaining_api_id
+2. Use your own branding and app identity for redistributed builds.
+3. Review security guidance: https://core.telegram.org/mtproto/security_guidelines
+4. Publish your source changes to comply with upstream licenses.
+
+## References
+
+- Telegram API: https://core.telegram.org/api
+- MTProto: https://core.telegram.org/mtproto
+- Reproducible builds: https://core.telegram.org/reproducible-builds
+
+## Localization
+
+If you keep the Telegram localization workflow, use:
+https://translations.telegram.org/en/android/
