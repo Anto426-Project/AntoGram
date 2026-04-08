@@ -1,6 +1,5 @@
 plugins {
 	id("com.android.application")
-	id("org.jetbrains.kotlin.android")
 	id("test-generator")
 }
 
@@ -53,10 +52,6 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_1_8
 		targetCompatibility = JavaVersion.VERSION_1_8
 		isCoreLibraryDesugaringEnabled = true
-	}
-
-	kotlinOptions {
-		jvmTarget = "1.8"
 	}
 
 	signingConfigs {
