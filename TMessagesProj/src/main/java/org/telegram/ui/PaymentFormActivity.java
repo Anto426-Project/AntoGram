@@ -82,14 +82,16 @@ import com.google.android.gms.wallet.PaymentDataRequest;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
+import com.stripe.android.ApiResultCallback;
+import com.stripe.android.CardUtils;
 import com.stripe.android.Stripe;
-import com.stripe.android.TokenCallback;
-import com.stripe.android.exception.APIConnectionException;
-import com.stripe.android.exception.APIException;
+import com.stripe.android.core.exception.APIConnectionException;
+import com.stripe.android.core.exception.APIException;
 import com.stripe.android.model.Card;
+import com.stripe.android.model.CardBrand;
+import com.stripe.android.model.CardParams;
 import com.stripe.android.model.Token;
-import com.stripe.android.net.StripeApiHandler;
-import com.stripe.android.net.TokenParser;
+import com.stripe.android.model.parsers.TokenJsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -2961,7 +2963,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                             put("parameters", new JSONObject() {{
                                 put("gateway", "stripe");
                                 put("stripe:publishableKey", providerApiKey);
-                                put("stripe:version", StripeApiHandler.VERSION);
+                                put("stripe:version", Stripe.VERSION);
                             }});
                         }
                     }});
@@ -3396,10 +3398,18 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                                 cardName = "Android Pay";
                             }
                         } else {
-                            Token t = TokenParser.parseToken(token);
-                            paymentJson = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", t.getType(), t.getId());
-                            Card card = t.getCard();
-                            cardName = card.getBrand() + " *" + card.getLast4();
+                            Token t = new TokenJsonParser().parse(new JSONObject(token));
+                            if (t != null) {
+                                String tokenType = t.getType() != null ? t.getType().toString().toLowerCase(Locale.US) : "card";
+                                paymentJson = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", tokenType, t.getId());
+                                Card tokenCard = t.getCard();
+                                if (tokenCard != null && tokenCard.getBrand() != null && tokenCard.getLast4() != null) {
+                                    cardName = tokenCard.getBrand().getDisplayName() + " *" + tokenCard.getLast4();
+                                } else {
+                                    String descriptions = paymentMethodData.optString("description");
+                                    cardName = TextUtils.isEmpty(descriptions) ? "Google Pay" : descriptions;
+                                }
+                            }
                         }
                         goToNextStep();
                     } catch (JSONException e) {
@@ -3858,17 +3868,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             month = null;
             year = null;
         }
-        Card card = new Card(
-                inputFields[FIELD_CARD].getText().toString(),
-                month,
-                year,
-                inputFields[FIELD_CVV].getText().toString(),
-                inputFields[FIELD_CARDNAME].getText().toString(),
-                null, null, null, null,
-                inputFields[FIELD_CARD_POSTCODE].getText().toString(),
-                inputFields[FIELD_CARD_COUNTRY].getText().toString(),
-                null);
-        cardName = card.getBrand() + " *" + card.getLast4();
+        final String cardNumber = inputFields[FIELD_CARD].getText().toString().replaceAll("\\s+", "");
+        final String cvc = inputFields[FIELD_CVV].getText().toString();
+        final String cardholderName = inputFields[FIELD_CARDNAME].getText().toString();
+
+        CardBrand cardBrand = CardUtils.getPossibleCardBrand(cardNumber);
+        String last4 = cardNumber.length() > 4 ? cardNumber.substring(cardNumber.length() - 4) : cardNumber;
+        String brandName = cardBrand != null ? cardBrand.getDisplayName() : "Card";
+        cardName = brandName + " *" + last4;
 
         boolean skipDateCheck = false;
         if (month != null && year != null) {
@@ -3881,16 +3888,16 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
         }
 
-        if (!card.validateNumber()) {
+        if (!isValidCardNumber(cardNumber)) {
             shakeField(FIELD_CARD);
             return false;
-        } else if (!skipDateCheck && (!card.validateExpMonth() || !card.validateExpYear() || !card.validateExpiryDate())) {
+        } else if (!skipDateCheck && !isValidExpiryDate(month, year)) {
             shakeField(FIELD_EXPIRE_DATE);
             return false;
         } else if (need_card_name && inputFields[FIELD_CARDNAME].length() == 0) {
             shakeField(FIELD_CARDNAME);
             return false;
-        } else if (!card.validateCVC()) {
+        } else if (!isValidCvc(cardNumber, cvc)) {
             shakeField(FIELD_CVV);
             return false;
         } else if (need_card_country && inputFields[FIELD_CARD_COUNTRY].length() == 0) {
@@ -3903,9 +3910,23 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         showEditDoneProgress(true, true);
         try {
             if ("stripe".equals(paymentForm.native_provider)) {
-                Stripe stripe = new Stripe(providerApiKey);
-                stripe.createToken(card, new TokenCallback() {
-                            public void onSuccess(Token token) {
+                Activity activity = getParentActivity();
+                if (activity == null) {
+                    showEditDoneProgress(true, false);
+                    setDonePressed(false);
+                    return false;
+                }
+                if (month == null || year == null) {
+                    showEditDoneProgress(true, false);
+                    setDonePressed(false);
+                    shakeField(FIELD_EXPIRE_DATE);
+                    return false;
+                }
+                CardParams cardParams = new CardParams(cardNumber, month, year, cvc, cardholderName);
+                Stripe stripe = new Stripe(activity, providerApiKey);
+                stripe.createCardToken(cardParams, new ApiResultCallback<Token>() {
+                            @Override
+                            public void onSuccess(@NonNull Token token) {
                                 if (canceled) {
                                     return;
                                 }
@@ -3917,6 +3938,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                                 });
                             }
 
+                            @Override
                             public void onError(Exception error) {
                                 if (canceled) {
                                     return;
@@ -3939,10 +3961,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         try {
                             JSONObject jsonObject = new JSONObject();
                             JSONObject cardObject = new JSONObject();
-                            cardObject.put("number", card.getNumber());
-                            cardObject.put("expiration_month", String.format(Locale.US, "%02d", card.getExpMonth()));
-                            cardObject.put("expiration_year", "" + card.getExpYear());
-                            cardObject.put("security_code", "" + card.getCVC());
+                            cardObject.put("number", cardNumber);
+                            cardObject.put("expiration_month", String.format(Locale.US, "%02d", month));
+                            cardObject.put("expiration_year", "" + year);
+                            cardObject.put("security_code", cvc);
                             jsonObject.put("card", cardObject);
 
                             String overrideSmartGlocalConnectionUrl = null;
@@ -4023,6 +4045,37 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             FileLog.e(e);
         }
         return true;
+    }
+
+    private boolean isValidCardNumber(String cardNumber) {
+        if (TextUtils.isEmpty(cardNumber)) {
+            return false;
+        }
+        CardBrand brand = CardUtils.getPossibleCardBrand(cardNumber);
+        return CardUtils.INSTANCE.isValidLuhnNumber(cardNumber)
+                && brand != null
+                && brand.isValidCardNumberLength(cardNumber);
+    }
+
+    private boolean isValidExpiryDate(Integer month, Integer year) {
+        if (month == null || year == null || month < 1 || month > 12) {
+            return false;
+        }
+        int nowYear = Calendar.getInstance().get(Calendar.YEAR) % 100;
+        int nowMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int normalizedYear = year % 100;
+        if (normalizedYear < nowYear) {
+            return false;
+        }
+        return normalizedYear != nowYear || month >= nowMonth;
+    }
+
+    private boolean isValidCvc(String cardNumber, String cvc) {
+        CardBrand brand = CardUtils.getPossibleCardBrand(cardNumber);
+        if (brand != null && brand != CardBrand.Unknown) {
+            return brand.isValidCvc(cvc);
+        }
+        return cvc != null && cvc.matches("\\d{3,4}");
     }
 
     private static String getResponseBody(InputStream responseStream) throws IOException {
