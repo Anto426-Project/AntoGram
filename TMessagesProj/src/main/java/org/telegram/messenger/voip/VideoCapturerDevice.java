@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
@@ -174,7 +173,11 @@ public class VideoCapturerDevice {
                     });
                 }
             } else {
-                CameraEnumerator enumerator = Camera2Enumerator.isSupported(ApplicationLoader.applicationContext) ? new Camera2Enumerator(ApplicationLoader.applicationContext) : new Camera1Enumerator();
+                if (!Camera2Enumerator.isSupported(ApplicationLoader.applicationContext)) {
+                    FileLog.e("VideoCapturerDevice: Camera2 is not supported on this device");
+                    return;
+                }
+                CameraEnumerator enumerator = new Camera2Enumerator(ApplicationLoader.applicationContext);
                 int index = -1;
                 String[] names = enumerator.getDeviceNames();
                 for (int a = 0; a < names.length; a++) {

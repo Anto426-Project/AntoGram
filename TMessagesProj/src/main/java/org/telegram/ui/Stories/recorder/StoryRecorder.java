@@ -45,7 +45,6 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
@@ -111,6 +110,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
@@ -3807,16 +3807,16 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         final int resId;
         switch (mode) {
-            case Camera.Parameters.FLASH_MODE_ON:
+            case CameraSession.FLASH_MODE_ON:
                 resId = R.drawable.media_photo_flash_on2;
                 flashButton.setContentDescription(getString(R.string.AccDescrCameraFlashOn));
                 break;
-            case Camera.Parameters.FLASH_MODE_AUTO:
+            case CameraSession.FLASH_MODE_AUTO:
                 resId = R.drawable.media_photo_flash_auto2;
                 flashButton.setContentDescription(getString(R.string.AccDescrCameraFlashAuto));
                 break;
             default:
-            case Camera.Parameters.FLASH_MODE_OFF:
+            case CameraSession.FLASH_MODE_OFF:
                 resId = R.drawable.media_photo_flash_off2;
                 flashButton.setContentDescription(getString(R.string.AccDescrCameraFlashOff));
                 break;
@@ -3881,7 +3881,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (!useDisplayFlashlight()) {
                 cameraView.startTakePictureAnimation(true);
             }
-            if (cameraView.isDual() && TextUtils.equals(cameraView.getCameraSession().getCurrentFlashMode(), Camera.Parameters.FLASH_MODE_OFF) || collageLayoutView.hasLayout()) {
+            if (cameraView.isDual() && TextUtils.equals(cameraView.getCameraSession().getCurrentFlashMode(), CameraSession.FLASH_MODE_OFF) || collageLayoutView.hasLayout()) {
                 if (!collageLayoutView.hasLayout()) {
                     cameraView.pauseAsTakingPicture();
                 }
@@ -6988,9 +6988,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (frontfaceFlashMode < 0) {
             frontfaceFlashMode = MessagesController.getGlobalMainSettings().getInt("frontflash", 1);
             frontfaceFlashModes = new ArrayList<>();
-            frontfaceFlashModes.add(Camera.Parameters.FLASH_MODE_OFF);
-            frontfaceFlashModes.add(Camera.Parameters.FLASH_MODE_AUTO);
-            frontfaceFlashModes.add(Camera.Parameters.FLASH_MODE_ON);
+            frontfaceFlashModes.add(CameraSession.FLASH_MODE_OFF);
+            frontfaceFlashModes.add(CameraSession.FLASH_MODE_AUTO);
+            frontfaceFlashModes.add(CameraSession.FLASH_MODE_ON);
 
             flashViews.setWarmth(MessagesController.getGlobalMainSettings().getFloat("frontflash_warmth", .9f));
             flashViews.setIntensity(MessagesController.getGlobalMainSettings().getFloat("frontflash_intensity", 1));

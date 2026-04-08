@@ -39,7 +39,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Pair;
-import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -60,9 +59,12 @@ import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.face.Face;
-import com.google.android.gms.vision.face.FaceDetector;
+import com.google.android.gms.tasks.Tasks;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.face.Face;
+import com.google.mlkit.vision.face.FaceDetection;
+import com.google.mlkit.vision.face.FaceDetector;
+import com.google.mlkit.vision.face.FaceDetectorOptions;
 import com.google.zxing.common.detector.MathUtils;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -2517,11 +2519,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     }
 
     private int getFrameRotation() {
-        switch (originalBitmapRotation) {
-            case 90: return Frame.ROTATION_90;
-            case 180: return Frame.ROTATION_180;
-            case 270: return Frame.ROTATION_270;
-            default: return Frame.ROTATION_0;
+        int rotation = ((originalBitmapRotation % 360) + 360) % 360;
+        switch (rotation) {
+            case 90:
+            case 180:
+            case 270:
+                return rotation;
+            default:
+                return 0;
         }
     }
 
@@ -2533,30 +2538,17 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         queue.postRunnable(() -> {
             FaceDetector faceDetector = null;
             try {
-                faceDetector = new FaceDetector.Builder(getContext())
-                        .setMode(FaceDetector.ACCURATE_MODE)
-                        .setLandmarkType(FaceDetector.ALL_LANDMARKS)
-                        .setTrackingEnabled(false).build();
-                if (!faceDetector.isOperational()) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.e("face detection is not operational");
-                    }
-                    return;
-                }
-
-                Frame frame = new Frame.Builder().setBitmap(facesBitmap).setRotation(getFrameRotation()).build();
-                SparseArray<Face> faces;
-                try {
-                    faces = faceDetector.detect(frame);
-                } catch (Throwable e) {
-                    FileLog.e(e);
-                    return;
-                }
+                faceDetector = FaceDetection.getClient(
+                        new FaceDetectorOptions.Builder()
+                                .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+                                .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+                                .build()
+                );
+                InputImage inputImage = InputImage.fromBitmap(facesBitmap, getFrameRotation());
+                java.util.List<Face> faces = Tasks.await(faceDetector.process(inputImage));
                 ArrayList<PhotoFace> result = new ArrayList<>();
                 Size targetSize = getPaintingSize();
-                for (int i = 0; i < faces.size(); i++) {
-                    int key = faces.keyAt(i);
-                    Face f = faces.get(key);
+                for (Face f : faces) {
                     PhotoFace face = new PhotoFace(f, facesBitmap, targetSize, isSidewardOrientation());
                     if (face.isSufficient()) {
                         result.add(face);
@@ -2567,7 +2559,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 FileLog.e(e);
             } finally {
                 if (faceDetector != null) {
-                    faceDetector.release();
+                    faceDetector.close();
                 }
             }
         }, 200);

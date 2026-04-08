@@ -8,29 +8,20 @@ androidx-interpolator = "1.0.0"
 androidx-biometric = "1.1.0"
 androidx-mediarouter = "1.8.1"
 androidx-credentials = "1.6.0-rc02"
-barcode-scanning = "17.3.0"
-barcode-scanning-version = "17.2.0"
+barcode-scanning-version = "17.3.0"
 camera-view = "1.6.0"
-checker-compat-qual-version = "2.5.5"
-core = "1.18.0"
-dynamicanimation = "1.1.0"
-exifinterface = "1.4.2"
-face-detection = "16.1.7"
-face-detection-version = "16.1.5"
+checker-compat-qual-version = "2.5.6"
+face-detection-version = "16.1.7"
 gradle = "9.1.0"
-image-labeling = "17.0.9"
-image-labeling-version = "17.0.8"
+image-labeling-version = "17.0.9"
 play-cast-framework = "22.3.1"
 nanohttpd = "2.3.1"
 checker-qual = "3.55.1"
-checker-compat-qual = "2.5.6"
 firebase-messaging = "25.0.1"
 firebase-config = "23.0.1"
 firebase-datatransport = "20.0.1"
-firebase-appindexing = "20.0.0"
 play-maps = "20.0.0"
 play-auth = "21.5.1"
-play-vision = "20.1.3"
 play-wearable = "19.0.0"
 play-location = "21.3.0"
 play-wallet = "19.5.0"
@@ -40,14 +31,10 @@ mlkit-language-id = "17.0.6"
 billing = "8.3.0"
 gson = "2.13.2"
 guava-android = "33.5.0-android"
-play-integrity = "1.6.0"
-play-safetynet = "18.1.0"
 play-mlkit-subject-segmentation = "16.0.0-beta1"
-play-mlkit-image-labeling = "16.0.8"
 recaptcha = "18.8.0"
 desugar-jdk-libs = "2.1.5"
 androidx-fragment = "1.8.9"
-appcenter = "5.0.6"
 firebase-bom = "34.11.0"
 firebase-crashlytics = "20.0.4"
 junit4 = "4.13.2"
@@ -60,8 +47,7 @@ javaparser = "3.28.0"
 kotlinpoet = "2.3.0"
 jsr305 = "3.0.2"
 aspectjrt = "1.9.25.1"
-text-recognition = "16.0.1"
-text-recognition-version = "16.0.0"
+text-recognition-version = "16.0.1"
 
 [libraries]
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera-view" }
@@ -69,9 +55,6 @@ androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera-view" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera-view" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
-androidx-core-v1160 = { module = "androidx.core:core", version.ref = "core" }
-androidx-dynamicanimation-v100 = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "dynamicanimation" }
-androidx-exifinterface-v136 = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
 androidx-palette = { module = "androidx.palette:palette", version.ref = "androidx-palette" }
 androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidx-exifinterface" }
 androidx-dynamicanimation = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "androidx-dynamicanimation" }
@@ -81,25 +64,19 @@ androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "a
 androidx-mediarouter = { module = "androidx.mediarouter:mediarouter", version.ref = "androidx-mediarouter" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "androidx-credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "androidx-credentials" }
-barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcode-scanning" }
 barcode-scanning-v1720 = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcode-scanning-version" }
 checker-compat-qual-v255 = { module = "org.checkerframework:checker-compat-qual", version.ref = "checker-compat-qual-version" }
-face-detection = { module = "com.google.mlkit:face-detection", version.ref = "face-detection" }
 face-detection-v1615 = { module = "com.google.mlkit:face-detection", version.ref = "face-detection-version" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
-image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "image-labeling" }
 image-labeling-v1708 = { module = "com.google.mlkit:image-labeling", version.ref = "image-labeling-version" }
 play-services-cast-framework = { module = "com.google.android.gms:play-services-cast-framework", version.ref = "play-cast-framework" }
 nanohttpd = { module = "org.nanohttpd:nanohttpd", version.ref = "nanohttpd" }
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-qual" }
-checker-compat-qual = { module = "org.checkerframework:checker-compat-qual", version.ref = "checker-compat-qual" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebase-messaging" }
 firebase-config = { module = "com.google.firebase:firebase-config", version.ref = "firebase-config" }
 firebase-datatransport = { module = "com.google.firebase:firebase-datatransport", version.ref = "firebase-datatransport" }
-firebase-appindexing = { module = "com.google.firebase:firebase-appindexing", version.ref = "firebase-appindexing" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-maps" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-auth" }
-play-services-vision = { module = "com.google.android.gms:play-services-vision", version.ref = "play-vision" }
 play-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.ref = "play-wearable" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-location" }
 play-services-wallet = { module = "com.google.android.gms:play-services-wallet", version.ref = "play-wallet" }
@@ -110,13 +87,9 @@ billing = { module = "com.android.billingclient:billing", version.ref = "billing
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 guava-android = { module = "com.google.guava:guava", version.ref = "guava-android" }
 play-services-mlkit-subject-segmentation = { module = "com.google.android.gms:play-services-mlkit-subject-segmentation", version.ref = "play-mlkit-subject-segmentation" }
-play-services-mlkit-image-labeling = { module = "com.google.android.gms:play-services-mlkit-image-labeling", version.ref = "play-mlkit-image-labeling" }
 recaptcha = { module = "com.google.android.recaptcha:recaptcha", version.ref = "recaptcha" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "androidx-fragment" }
-appcenter-distribute = { module = "com.microsoft.appcenter:appcenter-distribute", version.ref = "appcenter" }
-appcenter-crashes = { module = "com.microsoft.appcenter:appcenter-crashes", version.ref = "appcenter" }
-appcenter-analytics = { module = "com.microsoft.appcenter:appcenter-analytics", version.ref = "appcenter" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "firebase-crashlytics" }
 junit4 = { module = "junit:junit", version.ref = "junit4" }
@@ -131,5 +104,4 @@ javaparser-core = { module = "com.github.javaparser:javaparser-core", version.re
 kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
 jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
 aspectjrt = { module = "org.aspectj:aspectjrt", version.ref = "aspectjrt" }
-text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "text-recognition" }
 text-recognition-v1600 = { module = "com.google.mlkit:text-recognition", version.ref = "text-recognition-version" }

@@ -6,8 +6,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,7 +27,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.camera.CameraSessionWrapper;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.ConnectionsManager;
@@ -503,7 +502,7 @@ public class DualCameraView extends CameraView {
     }
 
     @Override
-    public void onError(int error, Camera camera, CameraSessionWrapper session) {
+    public void onError(int error, CameraSessionWrapper session) {
         if (isDual()) {
             if (!dualAvailableDefault(getContext(), false)) {
                 MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", dualAvailable = false).apply();
@@ -571,10 +570,27 @@ public class DualCameraView extends CameraView {
 
     };
 
+    private static int getAvailableCameraCount(Context context) {
+        if (context == null) {
+            return 0;
+        }
+        try {
+            CameraManager cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+            if (cameraManager == null) {
+                return 0;
+            }
+            String[] cameraIds = cameraManager.getCameraIdList();
+            return cameraIds != null ? cameraIds.length : 0;
+        } catch (Throwable e) {
+            FileLog.e(e);
+            return 0;
+        }
+    }
+
     public static boolean dualAvailableDefault(Context context, boolean withWhitelist) {
         boolean def = (
             SharedConfig.getDevicePerformanceClass() >= SharedConfig.PERFORMANCE_CLASS_AVERAGE &&
-            Camera.getNumberOfCameras() > 1 &&
+            getAvailableCameraCount(context) > 1 &&
             SharedConfig.allowPreparingHevcPlayers()
         );
         if (def) {
@@ -612,7 +628,7 @@ public class DualCameraView extends CameraView {
     public static boolean roundDualAvailableDefault(Context context) {
         return (
             SharedConfig.getDevicePerformanceClass() >= SharedConfig.PERFORMANCE_CLASS_HIGH &&
-            Camera.getNumberOfCameras() > 1 &&
+            getAvailableCameraCount(context) > 1 &&
             SharedConfig.allowPreparingHevcPlayers() &&
             context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent")
         );

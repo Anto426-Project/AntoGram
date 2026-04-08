@@ -1,21 +1,11 @@
 package org.telegram.ui
 
 import android.content.Context
-import android.graphics.Point
 import android.graphics.PointF
-import android.graphics.Rect
 import android.graphics.RectF
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.common.InputImage
+import org.telegram.messenger.camera.CameraXController
 
 class CameraXQrScanner(
     private val context: Context,
@@ -35,96 +25,36 @@ class CameraXQrScanner(
         fun onError(error: Throwable)
     }
 
-    private var cameraProvider: ProcessCameraProvider? = null
-    private var imageAnalysis: ImageAnalysis? = null
+    private val session = CameraXController.createQrSession(
+        context = context,
+        lifecycleOwner = lifecycleOwner,
+        previewView = previewView,
+        listener = object : CameraXController.QrListener {
+            override fun onQrDetected(result: CameraXController.DetectionResult) {
+                listener.onQrDetected(
+                    DetectionResult(
+                        text = result.text,
+                        bounds = result.bounds,
+                        cornerPoints = result.cornerPoints
+                    )
+                )
+            }
 
-    private val scanner = BarcodeScanning.getClient(
-        BarcodeScannerOptions.Builder()
-            .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-            .build()
+            override fun onError(error: Throwable) {
+                listener.onError(error)
+            }
+        }
     )
 
     fun start() {
-        val providerFuture = ProcessCameraProvider.getInstance(context)
-        providerFuture.addListener({
-            try {
-                cameraProvider = providerFuture.get()
-                bindUseCases()
-            } catch (t: Throwable) {
-                listener.onError(t)
-            }
-        }, ContextCompat.getMainExecutor(context))
+        session.start()
     }
 
     fun stop() {
-        try {
-            imageAnalysis?.clearAnalyzer()
-            cameraProvider?.unbindAll()
-        } catch (_: Throwable) {
-        }
-        imageAnalysis = null
+        session.stop()
     }
 
-    private fun bindUseCases() {
-        val provider = cameraProvider ?: return
-
-        val preview = Preview.Builder().build().also {
-            it.setSurfaceProvider(previewView.surfaceProvider)
-        }
-
-        imageAnalysis = ImageAnalysis.Builder()
-            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-            .build()
-            .also { analysis ->
-                analysis.setAnalyzer(ContextCompat.getMainExecutor(context)) { imageProxy ->
-                    val mediaImage = imageProxy.image
-                    if (mediaImage == null) {
-                        imageProxy.close()
-                        return@setAnalyzer
-                    }
-
-                    val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
-                    scanner.process(image)
-                        .addOnSuccessListener { barcodes ->
-                            val first = barcodes.firstOrNull { !it.rawValue.isNullOrEmpty() }
-                            if (first != null) {
-                                listener.onQrDetected(
-                                    DetectionResult(
-                                        text = first.rawValue.orEmpty(),
-                                        bounds = normalizeBounds(first.boundingBox, imageProxy.width, imageProxy.height),
-                                        cornerPoints = normalizePoints(first.cornerPoints, imageProxy.width, imageProxy.height)
-                                    )
-                                )
-                            }
-                        }
-                        .addOnFailureListener { listener.onError(it) }
-                        .addOnCompleteListener { imageProxy.close() }
-                }
-            }
-
-        provider.unbindAll()
-        provider.bindToLifecycle(lifecycleOwner, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageAnalysis)
-    }
-
-    private fun normalizeBounds(bounds: Rect?, width: Int, height: Int): RectF? {
-        if (bounds == null || width <= 0 || height <= 0) {
-            return null
-        }
-        return RectF(
-            bounds.left / width.toFloat(),
-            bounds.top / height.toFloat(),
-            bounds.right / width.toFloat(),
-            bounds.bottom / height.toFloat()
-        )
-    }
-
-    private fun normalizePoints(points: Array<Point>?, width: Int, height: Int): Array<PointF>? {
-        if (points == null || points.isEmpty() || width <= 0 || height <= 0) {
-            return null
-        }
-        return Array(points.size) { index ->
-            val point = points[index]
-            PointF(point.x / width.toFloat(), point.y / height.toFloat())
-        }
+    fun setTorchEnabled(enabled: Boolean): Boolean {
+        return session.setTorchEnabled(enabled)
     }
 }

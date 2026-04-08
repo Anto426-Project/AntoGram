@@ -37,7 +37,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
@@ -94,8 +93,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.messenger.camera.CameraXInitializer;
+import org.telegram.messenger.camera.CameraXController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
@@ -2370,15 +2370,15 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     private void setCameraFlashModeIcon(ImageView imageView, String mode) {
         switch (mode) {
-            case Camera.Parameters.FLASH_MODE_OFF:
+            case CameraSession.FLASH_MODE_OFF:
                 imageView.setImageResource(R.drawable.flash_off);
                 imageView.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashOff));
                 break;
-            case Camera.Parameters.FLASH_MODE_ON:
+            case CameraSession.FLASH_MODE_ON:
                 imageView.setImageResource(R.drawable.flash_on);
                 imageView.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashOn));
                 break;
-            case Camera.Parameters.FLASH_MODE_AUTO:
+            case CameraSession.FLASH_MODE_AUTO:
                 imageView.setImageResource(R.drawable.flash_auto);
                 imageView.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashAuto));
                 break;
@@ -2412,14 +2412,14 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     deviceHasGoodCamera = false;
                 } else {
-                    CameraXInitializer.warmUp(fragment.getParentActivity());
+                    CameraXController.warmUp(fragment.getParentActivity());
                     if (request || SharedConfig.hasCameraCache) {
                         CameraController.getInstance().initCamera(null);
                     }
                     deviceHasGoodCamera = CameraController.getInstance().isCameraInitied();
                 }
             } else {
-                CameraXInitializer.warmUp(fragment.getParentActivity());
+                CameraXController.warmUp(fragment.getParentActivity());
                 if (request || SharedConfig.hasCameraCache) {
                     CameraController.getInstance().initCamera(null);
                 }

@@ -30,7 +30,6 @@ import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -183,7 +182,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     private Size aspectRatio = SharedConfig.roundCamera16to9 ? new Size(16, 9) : new Size(4, 3);
     private TextureView textureView;
     private BackupImageView textureOverlayView;
-    private final boolean useCamera2 = SharedConfig.isUsingCamera2(currentAccount);
+    private final boolean useCamera2 = true;
     private CameraSession cameraSession;
     private boolean bothCameras;
     private Camera2Session[] camera2Sessions = new Camera2Session[2];
@@ -1349,9 +1348,9 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
                         boolean updateScale = false;
                         try {
-                            Camera.Size size = cameraSession.getCurrentPreviewSize();
-                            if (size.width != previewSize[0].getWidth() || size.height != previewSize[0].getHeight()) {
-                                previewSize[0] = new Size(size.width, size.height);
+                            Size size = cameraSession.getCurrentPreviewSize();
+                            if (size.getWidth() != previewSize[0].getWidth() || size.getHeight() != previewSize[0].getHeight()) {
+                                previewSize[0] = new Size(size.getWidth(), size.getHeight());
                                 FileLog.d("InstantCamera change preview size to w = " + previewSize[0].getWidth() + " h = " + previewSize[0].getHeight());
                             }
                         } catch (Exception e) {
@@ -1359,9 +1358,9 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                         }
 
                         try {
-                            Camera.Size size = cameraSession.getCurrentPictureSize();
-                            if (size.width != pictureSize.getWidth() || size.height != pictureSize.getHeight()) {
-                                pictureSize = new Size(size.width, size.height);
+                            Size size = cameraSession.getCurrentPictureSize();
+                            if (size.getWidth() != pictureSize.getWidth() || size.getHeight() != pictureSize.getHeight()) {
+                                pictureSize = new Size(size.getWidth(), size.getHeight());
                                 FileLog.d("InstantCamera change picture size to w = " + pictureSize.getWidth() + " h = " + pictureSize.getHeight());
                                 updateScale = true;
                             }

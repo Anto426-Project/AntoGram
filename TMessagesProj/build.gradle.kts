@@ -43,7 +43,6 @@ dependencies {
 	implementation(libs.firebase.datatransport)
 	implementation(libs.play.services.maps)
 	implementation(libs.play.services.auth)
-	implementation(libs.play.services.vision)
 	implementation(libs.play.services.wearable)
 	implementation(libs.play.services.location)
 	implementation(libs.play.services.wallet)

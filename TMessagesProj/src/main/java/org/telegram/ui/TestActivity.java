@@ -16,7 +16,6 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.VideoCapturer;
@@ -70,7 +69,14 @@ public class TestActivity extends BaseFragment {
     }
 
     private static VideoCapturer createVideoCapturer(Context context) {
-        CameraEnumerator enumerator = Camera2Enumerator.isSupported(context) ? new Camera2Enumerator(context) : new Camera1Enumerator();
-        return enumerator.createCapturer(enumerator.getDeviceNames()[0], null);
+        if (!Camera2Enumerator.isSupported(context)) {
+            return null;
+        }
+        CameraEnumerator enumerator = new Camera2Enumerator(context);
+        String[] names = enumerator.getDeviceNames();
+        if (names.length == 0) {
+            return null;
+        }
+        return enumerator.createCapturer(names[0], null);
     }
 }

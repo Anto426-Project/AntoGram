@@ -29,7 +29,6 @@ import android.graphics.Shader;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaCodec;
@@ -122,7 +121,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     private int focusAreaSize;
     private Drawable thumbDrawable;
 
-    private final boolean useCamera2 = false && SharedConfig.isUsingCamera2(UserConfig.selectedAccount);
+    private final boolean useCamera2 = true;
     private final CameraSessionWrapper[] cameraSession = new CameraSessionWrapper[2];
     private CameraSessionWrapper cameraSessionRecording;
 
@@ -319,7 +318,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         dual = !dual;
         if (dual) {
             if (cameraSession[0] != null) {
-                cameraSession[0].setCurrentFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                cameraSession[0].setCurrentFlashMode(CameraSession.FLASH_MODE_OFF);
             }
             enableDualInternal();
         } else {
@@ -2316,7 +2315,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
                 surfaceTexture.setDefaultBufferSize(previewSize[i].getWidth(), previewSize[i].getHeight());
                 CameraSession session = new CameraSession(info[i], previewSize[i], pictureSize[i], ImageFormat.JPEG, false);
-                session.setCurrentFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                session.setCurrentFlashMode(CameraSession.FLASH_MODE_OFF);
                 cameraSession[i] = CameraSessionWrapper.of(session);
                 cameraThread.setCurrentSession(cameraSession[i], i);
                 requestLayout();
@@ -3401,7 +3400,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     @Override
-    public void onError(int errorId, Camera camera, CameraSessionWrapper cameraSession) {
+    public void onError(int errorId, CameraSessionWrapper cameraSession) {
 
     }
 }
