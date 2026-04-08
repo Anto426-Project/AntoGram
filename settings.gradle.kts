@@ -9,7 +9,7 @@ pluginManagement {
 		id("com.android.library") version "9.1.0"
 		id("com.google.gms.google-services") version "4.4.2"
 		id("com.google.firebase.crashlytics") version "3.0.6"
-		id("org.jetbrains.kotlin.android") version "2.2.10"
+		id("org.jetbrains.kotlin.android") version "2.3.20"
 	}
 }
 plugins {
