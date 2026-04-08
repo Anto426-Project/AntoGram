@@ -1,5 +1,4 @@
 [versions]
-agcp = "1.9.1.301"
 androidx-core = "1.18.0"
 androidx-palette = "1.0.0"
 androidx-exifinterface = "1.4.2"
@@ -44,9 +43,6 @@ androidx-fragment = "1.8.9"
 appcenter = "5.0.6"
 firebase-bom = "34.11.0"
 firebase-crashlytics = "20.0.4"
-huawei-push = "6.5.0.300"
-huawei-maps = "6.6.0.300"
-huawei-location = "6.4.0.300"
 junit4 = "4.13.2"
 androidx-test-ext-junit = "1.3.0"
 androidx-test-runner = "1.7.0"
@@ -59,7 +55,6 @@ jsr305 = "3.0.2"
 aspectjrt = "1.9.22.1"
 
 [libraries]
-agcp = { module = "com.huawei.agconnect:agcp", version.ref = "agcp" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
 androidx-core-v1160 = { module = "androidx.core:core", version.ref = "core" }
 androidx-dynamicanimation-v100 = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "dynamicanimation" }
@@ -108,9 +103,6 @@ appcenter-crashes = { module = "com.microsoft.appcenter:appcenter-crashes", vers
 appcenter-analytics = { module = "com.microsoft.appcenter:appcenter-analytics", version.ref = "appcenter" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "firebase-crashlytics" }
-huawei-push = { module = "com.huawei.hms:push", version.ref = "huawei-push" }
-huawei-maps = { module = "com.huawei.hms:maps", version.ref = "huawei-maps" }
-huawei-location = { module = "com.huawei.hms:location", version.ref = "huawei-location" }
 junit4 = { module = "junit:junit", version.ref = "junit4" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }

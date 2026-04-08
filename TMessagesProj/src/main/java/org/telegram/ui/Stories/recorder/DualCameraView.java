@@ -552,9 +552,9 @@ public class DualCameraView extends CameraView {
         -821405251,  // SAMSUNG BEYOND2
         -1394190955, // SAMSUNG A71
         -1394190055, // SAMSUNG B4Q
-        1407170066,  // HUAWEI HWNAM
-        1407159934,  // HUAWEI HWCOR
-        1407172057,  // HUAWEI HWPCT
+        1407170066,  // HWNAM
+        1407159934,  // HWCOR
+        1407172057,  // HWPCT
         1231389747,  // FAIRPHONE FP3
         -2076538925, // MOTOROLA RSTAR
         41497626,    // MOTOROLA RHODEC

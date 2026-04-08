@@ -90,7 +90,7 @@ android {
 	compileSdk = 36
 	ndkVersion = "21.4.7075529"
 
-	sourceSets.getByName("main").jniLibs.srcDirs("./jni/")
+	sourceSets.getByName("main").jniLibs.directories.add("./jni/")
 
 	externalNativeBuild {
 		cmake {

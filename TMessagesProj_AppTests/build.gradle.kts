@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-
 plugins {
 	id("com.android.application")
 	id("org.jetbrains.kotlin.android")
@@ -43,7 +41,7 @@ android {
 		applicationId = APP_PACKAGE
 	}
 
-	sourceSets.getByName("main").jniLibs.srcDirs("../TMessagesProj/jni/")
+	sourceSets.getByName("main").jniLibs.directories.add("../TMessagesProj/jni/")
 	testBuildType = "debug"
 
 	lint {
@@ -137,18 +135,14 @@ android {
 	}
 	namespace = "org.telegram.messenger.test"
 
-	@Suppress("DEPRECATION")
-	applicationVariants.all {
-		outputs.all {
-			(this as BaseVariantOutputImpl).outputFileName = "app.apk"
+}
+
+androidComponents {
+	beforeVariants(selector().all()) { variantBuilder ->
+		val flavorNames = variantBuilder.productFlavors.map { it.second }
+		if (variantBuilder.buildType != "release" && "afat" !in flavorNames) {
+			variantBuilder.enable = false
 		}
 	}
 
-	@Suppress("DEPRECATION")
-	variantFilter {
-		val names = flavors.map { it.name }
-		if (buildType?.name != "release" && !names.contains("afat")) {
-			ignore = true
-		}
-	}
 }

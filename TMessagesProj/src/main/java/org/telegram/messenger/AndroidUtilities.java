@@ -6469,7 +6469,7 @@ public class AndroidUtilities {
         if (isHonor == null) {
             try {
                 final String brand = Build.BRAND.toLowerCase();
-                isHonor = brand.contains("huawei") || brand.contains("honor");
+                isHonor = brand.contains("honor");
             } catch (Exception e) {
                 FileLog.e(e);
                 isHonor = false;

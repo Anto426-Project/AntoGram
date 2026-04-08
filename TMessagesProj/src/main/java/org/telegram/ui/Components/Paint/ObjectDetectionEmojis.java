@@ -32,7 +32,7 @@ public class ObjectDetectionEmojis {
                     "🎓", // Graduation
                     "🍶", // Porcelain
                     "🌿", // Twig
-                    "🌸", // Petal
+                    "🌸", // Flower
                     "🛋", // Cushion
                     "😎", // Sunglasses
                     "🏗", // Infrastructure

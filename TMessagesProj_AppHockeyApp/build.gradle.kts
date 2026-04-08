@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-
 plugins {
 	id("com.android.application")
 	id("com.google.gms.google-services")
@@ -46,7 +44,7 @@ android {
 		applicationId = APP_PACKAGE
 	}
 
-	sourceSets.getByName("main").jniLibs.srcDirs("../TMessagesProj/jni/")
+	sourceSets.getByName("main").jniLibs.directories.add("../TMessagesProj/jni/")
 
 	lint {
 		disable.addAll(listOf("MissingTranslation", "ExtraTranslation", "BlockedPrivateApi"))
@@ -152,25 +150,14 @@ android {
 	}
 	namespace = "org.telegram.messenger.regular"
 
-	@Suppress("DEPRECATION")
-	applicationVariants.all {
-		outputs.all {
-			val abiVersionCode = when (productFlavors.firstOrNull()?.name) {
-				"bundleAfat" -> 1
-				"bundleAfat_SDK23" -> 2
-				"afat" -> 9
-				else -> 1
-			}
-			val output = this as BaseVariantOutputImpl
-			output.outputFileName = "Telegram-Beta.apk"
+}
+
+androidComponents {
+	beforeVariants(selector().all()) { variantBuilder ->
+		val flavorNames = variantBuilder.productFlavors.map { it.second }
+		if (variantBuilder.buildType != "release" && "afat" !in flavorNames) {
+			variantBuilder.enable = false
 		}
 	}
 
-	@Suppress("DEPRECATION")
-	variantFilter {
-		val names = flavors.map { it.name }
-		if (buildType?.name != "release" && !names.contains("afat")) {
-			ignore = true
-		}
-	}
 }

@@ -149,31 +149,6 @@ public class NotificationBadge {
         }
     }
 
-    public static class HuaweiHomeBadger implements Badger {
-
-        @Override
-        public void executeBadge(int badgeCount) {
-            final Bundle localBundle = new Bundle();
-            localBundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
-            localBundle.putString("class", componentName.getClassName());
-            localBundle.putInt("badgenumber", badgeCount);
-            AndroidUtilities.runOnUIThread(() -> {
-                try {
-                    ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", null, localBundle);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            });
-        }
-
-        @Override
-        public List<String> getSupportLaunchers() {
-            return Arrays.asList(
-                    "com.huawei.android.launcher"
-            );
-        }
-    }
-
     public static class NewHtcHomeBadger implements Badger {
 
         public static final String INTENT_UPDATE_SHORTCUT = "com.htc.launcher.action.UPDATE_SHORTCUT";
@@ -500,7 +475,6 @@ public class NotificationBadge {
         BADGERS.add(SonyHomeBadger.class);
         BADGERS.add(XiaomiHomeBadger.class);
         BADGERS.add(AsusHomeBadger.class);
-        BADGERS.add(HuaweiHomeBadger.class);
         BADGERS.add(OPPOHomeBader.class);
         BADGERS.add(SamsungHomeBadger.class);
         BADGERS.add(ZukHomeBadger.class);
