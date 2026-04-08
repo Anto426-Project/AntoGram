@@ -19,6 +19,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraXInitializer;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AlertsCreator;
@@ -87,6 +88,7 @@ public class BasePermissionsActivity extends FragmentActivity {
                 showPermissionErrorAlert(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraWithHint));
             } else {
                 if (SharedConfig.inappCamera) {
+                    CameraXInitializer.warmUp(this);
                     CameraController.getInstance().initCamera(null);
                 }
                 return false;
@@ -94,6 +96,8 @@ public class BasePermissionsActivity extends FragmentActivity {
         } else if (requestCode == 18 || requestCode == 19 || requestCode == REQUEST_CODE_OPEN_CAMERA || requestCode == 22) {
             if (!granted) {
                 showPermissionErrorAlert(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraWithHint));
+            } else if (SharedConfig.inappCamera) {
+                CameraXInitializer.warmUp(this);
             }
         } else if (requestCode == REQUEST_CODE_GEOLOCATION) {
             NotificationCenter.getGlobalInstance().postNotificationName(granted ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied);

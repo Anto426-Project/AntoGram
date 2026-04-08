@@ -41,6 +41,7 @@ public class QRScanner {
     private final Utilities.Callback<Detected> listener;
     private Detected lastDetected;
     private final String prefix;
+    private final StoriesQrMlKitScanner mlKitScanner = new StoriesQrMlKitScanner();
 
     public QRScanner(Context context, Utilities.Callback<Detected> whenScanned) {
         this.listener = whenScanned;
@@ -129,6 +130,15 @@ public class QRScanner {
     private Detected detect(Bitmap bitmap) {
         if (bitmap == null) {
             return null;
+        }
+
+        try {
+            StoriesQrMlKitScanner.Detection detection = mlKitScanner.detect(bitmap, prefix);
+            if (detection != null) {
+                return new Detected(detection.getLink(), detection.getPoints());
+            }
+        } catch (Throwable ignore) {
+
         }
 
         final BarcodeDetector detector = this.detector.get();

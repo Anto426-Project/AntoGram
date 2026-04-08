@@ -9,12 +9,17 @@ androidx-biometric = "1.1.0"
 androidx-mediarouter = "1.8.1"
 androidx-credentials = "1.6.0-rc02"
 barcode-scanning = "17.3.0"
+barcode-scanning-version = "17.2.0"
+camera-view = "1.6.0"
+checker-compat-qual-version = "2.5.5"
 core = "1.18.0"
 dynamicanimation = "1.1.0"
 exifinterface = "1.4.2"
 face-detection = "16.1.7"
+face-detection-version = "16.1.5"
 gradle = "9.1.0"
 image-labeling = "17.0.9"
+image-labeling-version = "17.0.8"
 play-cast-framework = "22.3.1"
 nanohttpd = "2.3.1"
 checker-qual = "3.55.1"
@@ -56,8 +61,13 @@ kotlinpoet = "2.3.0"
 jsr305 = "3.0.2"
 aspectjrt = "1.9.25.1"
 text-recognition = "16.0.1"
+text-recognition-version = "16.0.0"
 
 [libraries]
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera-view" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera-view" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera-view" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera-view" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
 androidx-core-v1160 = { module = "androidx.core:core", version.ref = "core" }
 androidx-dynamicanimation-v100 = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "dynamicanimation" }
@@ -72,9 +82,13 @@ androidx-mediarouter = { module = "androidx.mediarouter:mediarouter", version.re
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "androidx-credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "androidx-credentials" }
 barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcode-scanning" }
+barcode-scanning-v1720 = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcode-scanning-version" }
+checker-compat-qual-v255 = { module = "org.checkerframework:checker-compat-qual", version.ref = "checker-compat-qual-version" }
 face-detection = { module = "com.google.mlkit:face-detection", version.ref = "face-detection" }
+face-detection-v1615 = { module = "com.google.mlkit:face-detection", version.ref = "face-detection-version" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "image-labeling" }
+image-labeling-v1708 = { module = "com.google.mlkit:image-labeling", version.ref = "image-labeling-version" }
 play-services-cast-framework = { module = "com.google.android.gms:play-services-cast-framework", version.ref = "play-cast-framework" }
 nanohttpd = { module = "org.nanohttpd:nanohttpd", version.ref = "nanohttpd" }
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-qual" }
@@ -118,3 +132,4 @@ kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
 jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
 aspectjrt = { module = "org.aspectj:aspectjrt", version.ref = "aspectjrt" }
 text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "text-recognition" }
+text-recognition-v1600 = { module = "com.google.mlkit:text-recognition", version.ref = "text-recognition-version" }
