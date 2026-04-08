@@ -15,11 +15,6 @@ import android.util.Base64;
 import androidx.annotation.Keep;
 
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.gms.tasks.Task;
-import com.google.android.play.core.integrity.IntegrityManager;
-import com.google.android.play.core.integrity.IntegrityManagerFactory;
-import com.google.android.play.core.integrity.IntegrityTokenRequest;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import org.json.JSONArray;
@@ -1555,41 +1550,8 @@ public class ConnectionsManager extends BaseController {
 
     @Keep
     public static void onIntegrityCheckClassic(final int currentAccount, final int requestToken, final String project, final String nonce) {
-        AndroidUtilities.runOnUIThread(() -> {
-            long start = System.currentTimeMillis();
-            FileLog.d("account"+currentAccount+": server requests integrity classic check with project = "+project+" nonce = " + nonce);
-            IntegrityManager integrityManager = IntegrityManagerFactory.create(ApplicationLoader.applicationContext);
-            final long project_id;
-            try {
-                project_id = Long.parseLong(project);
-            } catch (Exception e) {
-                FileLog.d("account"+currentAccount+": integrity check failes to parse project id");
-                native_receivedIntegrityCheckClassic(currentAccount, requestToken, nonce, "PLAYINTEGRITY_FAILED_EXCEPTION_NOPROJECT");
-                return;
-            }
-            Task<IntegrityTokenResponse> integrityTokenResponse = integrityManager.requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(nonce).setCloudProjectNumber(project_id).build());
-            integrityTokenResponse
-                .addOnSuccessListener(r -> {
-                    final String token = r.token();
-
-                    if (token == null) {
-                        FileLog.e("account"+currentAccount+": integrity check gave null token in " + (System.currentTimeMillis() - start) + "ms");
-                        native_receivedIntegrityCheckClassic(currentAccount, requestToken, nonce, "PLAYINTEGRITY_FAILED_EXCEPTION_NULL");
-                        return;
-                    }
-
-                    FileLog.d("account"+currentAccount+": integrity check successfully gave token: " + token + " in " + (System.currentTimeMillis() - start) + "ms");
-                    try {
-                        native_receivedIntegrityCheckClassic(currentAccount, requestToken, nonce, token);
-                    } catch (Exception e) {
-                        FileLog.e("receivedIntegrityCheckClassic failed", e);
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    FileLog.e("account"+currentAccount+": integrity check failed to give a token in " + (System.currentTimeMillis() - start) + "ms", e);
-                    native_receivedIntegrityCheckClassic(currentAccount, requestToken, nonce, "PLAYINTEGRITY_FAILED_EXCEPTION_" + LoginActivity.errorString(e));
-                });
-        });
+        FileLog.d("account" + currentAccount + ": integrity classic check requested but SDK is disabled");
+        native_receivedIntegrityCheckClassic(currentAccount, requestToken, nonce, "PLAYINTEGRITY_FAILED_UNAVAILABLE");
     }
 
     @Keep

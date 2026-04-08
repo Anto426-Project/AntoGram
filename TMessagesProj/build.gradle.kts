@@ -47,28 +47,20 @@ dependencies {
 	implementation(libs.mp4parser.isoparser)
 	implementation(libs.stripe.android)
 	implementation(libs.mlkit.language.id)
+	implementation(libs.barcode.scanning)
+	implementation(libs.text.recognition)
+	implementation(libs.face.detection)
+	implementation(libs.image.labeling)
 	implementation(libs.billing)
 	implementation(libs.gson)
 	implementation(libs.guava.android)
-	implementation(libs.play.integrity)
-	implementation(libs.play.services.safetynet)
 	implementation(libs.jsr305)
 	implementation(libs.aspectjrt)
 
 	implementation(libs.play.services.mlkit.subject.segmentation)
-	implementation(libs.play.services.mlkit.image.labeling)
 
 	implementation(libs.androidx.credentials)
 	implementation(libs.androidx.credentials.play.services.auth)
-
-	constraints {
-		implementation(libs.kotlin.stdlib.jdk7) {
-			because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-		}
-		implementation(libs.kotlin.stdlib.jdk8) {
-			because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-		}
-	}
 	implementation(libs.recaptcha)
 
 	coreLibraryDesugaring(libs.desugar.jdk.libs)

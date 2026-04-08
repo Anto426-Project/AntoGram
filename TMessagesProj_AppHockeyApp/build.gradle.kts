@@ -29,10 +29,6 @@ dependencies {
 	coreLibraryDesugaring(libs.desugar.jdk.libs)
 	implementation(files("../TMessagesProj/libs/libgsaverification-client.aar"))
 
-	implementation(libs.appcenter.distribute)
-	implementation(libs.appcenter.crashes)
-	implementation(libs.appcenter.analytics)
-
 	implementation(platform(libs.firebase.bom))
 	implementation(libs.firebase.crashlytics)
 }

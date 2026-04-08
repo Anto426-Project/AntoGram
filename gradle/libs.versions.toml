@@ -8,10 +8,13 @@ androidx-interpolator = "1.0.0"
 androidx-biometric = "1.1.0"
 androidx-mediarouter = "1.8.1"
 androidx-credentials = "1.6.0-rc02"
+barcode-scanning = "17.3.0"
 core = "1.18.0"
 dynamicanimation = "1.1.0"
 exifinterface = "1.4.2"
+face-detection = "16.1.7"
 gradle = "9.1.0"
+image-labeling = "17.0.9"
 play-cast-framework = "22.3.1"
 nanohttpd = "2.3.1"
 checker-qual = "3.55.1"
@@ -29,14 +32,13 @@ play-wallet = "19.5.0"
 mp4parser-isoparser = "1.1.22"
 stripe-android = "23.3.0"
 mlkit-language-id = "17.0.6"
-billing = "6.1.0"
+billing = "8.3.0"
 gson = "2.13.2"
 guava-android = "33.5.0-android"
 play-integrity = "1.6.0"
 play-safetynet = "18.1.0"
 play-mlkit-subject-segmentation = "16.0.0-beta1"
 play-mlkit-image-labeling = "16.0.8"
-kotlin-stdlib-legacy = "2.2.20"
 recaptcha = "18.8.0"
 desugar-jdk-libs = "2.1.5"
 androidx-fragment = "1.8.9"
@@ -53,6 +55,7 @@ javaparser = "3.28.0"
 kotlinpoet = "2.3.0"
 jsr305 = "3.0.2"
 aspectjrt = "1.9.25.1"
+text-recognition = "16.0.1"
 
 [libraries]
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
@@ -68,7 +71,10 @@ androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "a
 androidx-mediarouter = { module = "androidx.mediarouter:mediarouter", version.ref = "androidx-mediarouter" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "androidx-credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "androidx-credentials" }
+barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcode-scanning" }
+face-detection = { module = "com.google.mlkit:face-detection", version.ref = "face-detection" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "image-labeling" }
 play-services-cast-framework = { module = "com.google.android.gms:play-services-cast-framework", version.ref = "play-cast-framework" }
 nanohttpd = { module = "org.nanohttpd:nanohttpd", version.ref = "nanohttpd" }
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-qual" }
@@ -89,12 +95,8 @@ mlkit-language-id = { module = "com.google.mlkit:language-id", version.ref = "ml
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 guava-android = { module = "com.google.guava:guava", version.ref = "guava-android" }
-play-integrity = { module = "com.google.android.play:integrity", version.ref = "play-integrity" }
-play-services-safetynet = { module = "com.google.android.gms:play-services-safetynet", version.ref = "play-safetynet" }
 play-services-mlkit-subject-segmentation = { module = "com.google.android.gms:play-services-mlkit-subject-segmentation", version.ref = "play-mlkit-subject-segmentation" }
 play-services-mlkit-image-labeling = { module = "com.google.android.gms:play-services-mlkit-image-labeling", version.ref = "play-mlkit-image-labeling" }
-kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin-stdlib-legacy" }
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin-stdlib-legacy" }
 recaptcha = { module = "com.google.android.recaptcha:recaptcha", version.ref = "recaptcha" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "androidx-fragment" }
@@ -115,3 +117,4 @@ javaparser-core = { module = "com.github.javaparser:javaparser-core", version.re
 kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
 jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
 aspectjrt = { module = "org.aspectj:aspectjrt", version.ref = "aspectjrt" }
+text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "text-recognition" }
