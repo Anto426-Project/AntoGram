@@ -1426,14 +1426,29 @@ public class LocaleController {
         return localeInfo == null || TextUtils.isEmpty(localeInfo.name) ? getString("LanguageName", R.string.LanguageName) : localeInfo.name;
     }
 
+    private static boolean isLocalBrandingKey(String key) {
+        if (TextUtils.isEmpty(key)) {
+            return false;
+        }
+        return "AppName".equals(key)
+                || "AppNameBeta".equals(key)
+                || "TelegramVersion".equals(key)
+                || key.startsWith("MainTabs")
+                || key.startsWith("Telegram")
+                || key.startsWith("MenuTelegram")
+                || key.startsWith("GiftTelegram")
+                || key.startsWith("AboutTelegram")
+                || key.startsWith("BoostingTelegram");
+    }
+
     private String getStringInternal(String key, int res) {
         return getStringInternal(key, null, 0, res);
     }
 
     private String getStringInternal(String key, String fallback, int fallbackRes, int res) {
-        String value = BuildVars.USE_CLOUD_STRINGS ? localeValues.get(key) : null;
+        String value = !isLocalBrandingKey(key) && BuildVars.USE_CLOUD_STRINGS ? localeValues.get(key) : null;
         if (value == null) {
-            if (BuildVars.USE_CLOUD_STRINGS && fallback != null) {
+            if (BuildVars.USE_CLOUD_STRINGS && fallback != null && !isLocalBrandingKey(fallback)) {
                 value = localeValues.get(fallback);
             }
             if (value == null) {

@@ -2353,7 +2353,9 @@ public class Theme {
         }
 
         public String getName() {
-            if ("Blue".equals(name)) {
+            if ("AntoGram".equals(name)) {
+                return getString(R.string.AppName);
+            } else if ("Blue".equals(name)) {
                 return getString(R.string.ThemeClassic);
             } else if ("Dark Blue".equals(name)) {
                 return getString(R.string.ThemeDark);
@@ -2481,7 +2483,7 @@ public class Theme {
             }
             if ("Dark Blue".equals(name) || "Night".equals(name)) {
                 isDark = DARK;
-            } else if ("Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name)) {
+            } else if ("AntoGram".equals(name) || "Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name)) {
                 isDark = LIGHT;
             }
             if (isDark == UNKNOWN) {
@@ -4602,14 +4604,14 @@ public class Theme {
         SharedPreferences themeConfig = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", Activity.MODE_PRIVATE);
 
         ThemeInfo themeInfo = new ThemeInfo();
-        themeInfo.name = "Blue";
+        themeInfo.name = "AntoGram";
         themeInfo.assetName = "bluebubbles.attheme";
         themeInfo.previewBackgroundColor = 0xff95beec;
         themeInfo.previewInColor = 0xffffffff;
         themeInfo.previewOutColor = 0xffd0e6ff;
         themeInfo.firstAccentIsDefault = true;
         themeInfo.currentAccentId = DEFALT_THEME_ACCENT_ID;
-        themeInfo.sortIndex = 1;
+        themeInfo.sortIndex = 0;
         themeInfo.setAccentColorOptions(
                 new int[]    { 0xFF5890C5,                     0xFF239853,                    0xFFCE5E82,                    0xFF7F63C3,                    0xFF2491AD,                    0xFF299C2F,                    0xFF8854B4,                    0xFF328ACF,                    0xFF43ACC7,                    0xFF52AC44,                    0xFFCD5F93,                    0xFFD28036,                    0xFF8366CC,                    0xFFCE4E57,                    0xFFD3AE40,                    0xFF7B88AB },
                 new int[]    { 0xFFB8E18D,                     0xFFFAFBCC,                    0xFFFFF9DC,                    0xFFC14F6E,                    0xFFD1BD1B,                    0xFFFFFAC9,                    0xFFFCF6D8,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000,                    0x00000000 },
@@ -4625,6 +4627,7 @@ public class Theme {
                 );
         sortAccents(themeInfo);
         themes.add(currentDayTheme = defaultTheme = themeInfo);
+        themesDict.put("AntoGram", themeInfo);
         themesDict.put("Blue", themeInfo);
 
         themeInfo = new ThemeInfo();
@@ -4775,7 +4778,7 @@ public class Theme {
 
             String theme = preferences.getString("theme", null);
             if ("Default".equals(theme)) {
-                applyingTheme = themesDict.get("Blue");
+                applyingTheme = themesDict.get("AntoGram");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;
             } else if ("Dark".equals(theme)) {
                 applyingTheme = themeDarkBlue;
@@ -4791,7 +4794,7 @@ public class Theme {
 
             theme = preferences.getString("nighttheme", null);
             if ("Default".equals(theme)) {
-                applyingTheme = themesDict.get("Blue");
+                applyingTheme = themesDict.get("AntoGram");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;
             } else if ("Dark".equals(theme)) {
                 currentNightTheme = themeDarkBlue;
@@ -7670,7 +7673,7 @@ public class Theme {
     }
 
     public static TLRPC.BaseTheme getBaseThemeByKey(String key) {
-        if ("Blue".equals(key)) {
+        if ("AntoGram".equals(key) || "Blue".equals(key)) {
             return new TLRPC.TL_baseThemeClassic();
         } else if ("Day".equals(key)) {
             return new TLRPC.TL_baseThemeDay();
@@ -10543,7 +10546,7 @@ public class Theme {
 
     public static boolean isHome(ThemeAccent accent) {
         if (accent.parentTheme != null) {
-            if (accent.parentTheme.getKey().equals("Blue") && accent.id == 99) {
+            if ((accent.parentTheme.getKey().equals("AntoGram") || accent.parentTheme.getKey().equals("Blue")) && accent.id == 99) {
                 return true;
             }
             if (accent.parentTheme.getKey().equals("Day") && accent.id == 9) {

@@ -186,6 +186,7 @@ import org.telegram.ui.Components.TextViewSwitcher;
 import org.telegram.ui.Components.TransformableLoginButtonView;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.VerticalPositionAutoAnimator;
+import org.telegram.ui.Components.compose.GoogleSignInMaterialButtonView;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Stars.ExplainStarsSheet;
@@ -1251,10 +1252,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{banned ? "recover@telegram.org" : "login@stel.com"});
                 if (banned) {
                     mailer.putExtra(Intent.EXTRA_SUBJECT, "Banned phone number: " + phoneNumber);
-                    mailer.putExtra(Intent.EXTRA_TEXT, "I'm trying to use my mobile phone number: " + phoneNumber + "\nBut Telegram says it's banned. Please help.\n\nApp version: " + version + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    mailer.putExtra(Intent.EXTRA_TEXT, "I'm trying to use my mobile phone number: " + phoneNumber + "\nBut AntoGram says it's banned. Please help.\n\nApp version: " + version + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
                 } else {
                     mailer.putExtra(Intent.EXTRA_SUBJECT, "Invalid phone number: " + phoneNumber);
-                    mailer.putExtra(Intent.EXTRA_TEXT, "I'm trying to use my mobile phone number: " + phoneNumber + "\nBut Telegram says it's invalid. Please help.\n\nApp version: " + version + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    mailer.putExtra(Intent.EXTRA_TEXT, "I'm trying to use my mobile phone number: " + phoneNumber + "\nBut AntoGram says it's invalid. Please help.\n\nApp version: " + version + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
                 }
                 fragment.getParentActivity().startActivity(Intent.createChooser(mailer, "Send email..."));
             } catch (Exception e) {
@@ -5768,7 +5769,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         private TextView titleView;
         private TextView subtitleView;
-        private TextView signInWithGoogleView;
+        private GoogleSignInMaterialButtonView signInWithGoogleView;
         private LoginOrView loginOrView;
         private RLottieImageView inboxImageView;
 
@@ -5835,28 +5836,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(emailOutlineView, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 58, 16, 24, 16, 0));
 
-            signInWithGoogleView = new TextView(context);
-            signInWithGoogleView.setGravity(Gravity.LEFT);
-            signInWithGoogleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
-            signInWithGoogleView.setLineSpacing(AndroidUtilities.dp(2), 1.0f);
-            signInWithGoogleView.setPadding(AndroidUtilities.dp(16), AndroidUtilities.dp(16), AndroidUtilities.dp(16), AndroidUtilities.dp(16));
-            signInWithGoogleView.setMaxLines(2);
-
-            SpannableStringBuilder str = new SpannableStringBuilder("d ");
-            Drawable dr = ContextCompat.getDrawable(context, R.drawable.googleg_standard_color_18);
-            dr.setBounds(0, AndroidUtilities.dp(9), AndroidUtilities.dp(18), AndroidUtilities.dp(18 + 9));
-            str.setSpan(new ImageSpan(dr, ImageSpan.ALIGN_BOTTOM), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            str.setSpan(new ReplacementSpan() {
-                @Override
-                public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
-                    return AndroidUtilities.dp(12);
-                }
-
-                @Override
-                public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, @NonNull Paint paint) {}
-            }, 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            str.append(getString(R.string.SignInWithGoogle));
-            signInWithGoogleView.setText(str);
+            signInWithGoogleView = new GoogleSignInMaterialButtonView(context);
+            signInWithGoogleView.setLabel(getString(R.string.SignInWithGoogle));
+            signInWithGoogleView.setFillContainerWidth(false);
 
             loginOrView = new LoginOrView(context);
 
@@ -5870,7 +5852,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             addView(bottomContainer, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
             VerticalPositionAutoAnimator.attach(bottomContainer);
 
-            bottomContainer.setOnClickListener(view -> {
+            View.OnClickListener googleSignInClickListener = view -> {
                 NotificationCenter.getGlobalInstance().addObserver(new NotificationCenter.NotificationCenterDelegate() {
                     @Override
                     public void didReceivedNotification(int id, int account, Object... args) {
@@ -5900,7 +5882,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                     getParentActivity().startActivityForResult(googleClient.getSignInIntent(), BasePermissionsActivity.REQUEST_CODE_SIGN_IN_WITH_GOOGLE);
                 });
-            });
+            };
+            signInWithGoogleView.setOnClickListener(googleSignInClickListener);
+            bottomContainer.setOnClickListener(googleSignInClickListener);
         }
 
         @Override
@@ -5909,7 +5893,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
             subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
             emailField.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            signInWithGoogleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+            signInWithGoogleView.syncTheme();
             loginOrView.updateColors();
 
             emailOutlineView.invalidate();
@@ -6101,7 +6085,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         private CodeFieldContainer codeFieldContainer;
         private TextView titleView;
         private TextView confirmTextView;
-        private TextView signInWithGoogleView;
+        private GoogleSignInMaterialButtonView signInWithGoogleView;
         private FrameLayout resendFrameLayout;
         private TextView resendCodeView;
         private FrameLayout cantAccessEmailFrameLayout;
@@ -6181,28 +6165,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(codeFieldContainer, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, 42, Gravity.CENTER_HORIZONTAL, 0, setup ? 48 : 32, 0, 0));
 
-            signInWithGoogleView = new TextView(context);
-            signInWithGoogleView.setGravity(Gravity.CENTER);
-            signInWithGoogleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
-            signInWithGoogleView.setLineSpacing(AndroidUtilities.dp(2), 1.0f);
-            signInWithGoogleView.setPadding(AndroidUtilities.dp(16), AndroidUtilities.dp(16), AndroidUtilities.dp(16), AndroidUtilities.dp(16));
-            signInWithGoogleView.setMaxLines(2);
-
-            SpannableStringBuilder str = new SpannableStringBuilder("d ");
-            Drawable dr = ContextCompat.getDrawable(context, R.drawable.googleg_standard_color_18);
-            dr.setBounds(0, AndroidUtilities.dp(9), AndroidUtilities.dp(18), AndroidUtilities.dp(18 + 9));
-            str.setSpan(new ImageSpan(dr, ImageSpan.ALIGN_BOTTOM), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            str.setSpan(new ReplacementSpan() {
-                @Override
-                public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
-                    return AndroidUtilities.dp(12);
-                }
-
-                @Override
-                public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, @NonNull Paint paint) {}
-            }, 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            str.append(getString(R.string.SignInWithGoogle));
-            signInWithGoogleView.setText(str);
+            signInWithGoogleView = new GoogleSignInMaterialButtonView(context);
+            signInWithGoogleView.setLabel(getString(R.string.SignInWithGoogle));
+            signInWithGoogleView.setFillContainerWidth(true);
 
             signInWithGoogleView.setOnClickListener(view -> {
                 NotificationCenter.getGlobalInstance().addObserver(new NotificationCenter.NotificationCenterDelegate() {
@@ -6435,7 +6400,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         public void updateColors() {
             titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             confirmTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
-            signInWithGoogleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+            signInWithGoogleView.syncTheme();
             loginOrView.updateColors();
             resendCodeView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
             cantAccessEmailView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
