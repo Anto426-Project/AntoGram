@@ -70,6 +70,30 @@ dependencies {
 
 val isWindows = DefaultNativePlatform.getCurrentOperatingSystem().isWindows().toString()
 
+val envFileProps by lazy {
+	val props = Properties()
+	val envFile = rootProject.file(".env")
+	if (envFile.exists()) {
+		envFile.forEachLine { line ->
+			val trimmed = line.trim()
+			if (trimmed.isEmpty() || trimmed.startsWith("#")) {
+				return@forEachLine
+			}
+			val separatorIndex = trimmed.indexOf('=')
+			if (separatorIndex <= 0) {
+				return@forEachLine
+			}
+			val key = trimmed.substring(0, separatorIndex).trim()
+			var value = trimmed.substring(separatorIndex + 1).trim()
+			if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith('\'') && value.endsWith('\''))) {
+				value = value.substring(1, value.length - 1)
+			}
+			props[key] = value
+		}
+	}
+	props
+}
+
 fun getProps(propName: String): String {
 	val propsFile = rootProject.file("local.properties")
 	if (propsFile.exists()) {
@@ -82,6 +106,7 @@ fun getProps(propName: String): String {
 
 fun getEnvOrProp(propName: String, defaultValue: String): String {
 	return System.getenv(propName)?.takeIf { it.isNotBlank() }
+		?: envFileProps.getProperty(propName)?.takeIf { it.isNotBlank() }
 		?: getProps(propName).takeIf { it.isNotBlank() }
 		?: defaultValue
 }
