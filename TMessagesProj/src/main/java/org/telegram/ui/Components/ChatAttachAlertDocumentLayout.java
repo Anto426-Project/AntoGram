@@ -1,5 +1,5 @@
 /*
- * This is the source code of Telegram for Android v. 5.x.x.
+ * This is the source code of AntoGram for Android v. 5.x.x.
  * It is licensed under GNU GPL v. 2 or later.
  * You should have received a copy of the license in this archive (see LICENSE).
  *
@@ -972,7 +972,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         if (files != null) {
             for (int a = 0; a < files.length; a++) {
                 File file = files[a];
-                if (file.isDirectory() && file.getName().equals("Telegram")) {
+                if (file.isDirectory() && file.getName().equals("AntoGram")) {
                     checkDirectory(file);
                     continue;
                 }
@@ -1346,10 +1346,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
         ListItem fs;
         try {
-            File telegramPath = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
+            File telegramPath = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "AntoGram");
             if (telegramPath.exists()) {
                 fs = new ListItem();
-                fs.title = "Telegram";
+                fs.title = "AntoGram";
                 fs.subtitle = LocaleController.getString(R.string.AppFolderInfo);
                 fs.icon = R.drawable.files_folder;
                 fs.file = telegramPath;

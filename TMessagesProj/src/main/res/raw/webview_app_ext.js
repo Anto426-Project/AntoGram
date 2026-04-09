@@ -1,5 +1,5 @@
 /*
- *  Telegram-Android browser extension for Mini Apps
+ *  AntoGram-Android browser extension for Mini Apps
  *
  *  # Gestures
  *  This script captures whether touch event is consumed by a website, to otherwise apply

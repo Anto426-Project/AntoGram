@@ -1,5 +1,5 @@
 /*
- * This is the source code of Telegram for Android v. 5.x.x.
+ * This is the source code of AntoGram for Android v. 5.x.x.
  * It is licensed under GNU GPL v. 2 or later.
  * You should have received a copy of the license in this archive (see LICENSE).
  *
@@ -5827,7 +5827,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_userForeign_old2 user = new TLRPC.TL_userForeign_old2();
         user.phone = "333";
         user.id = 333000;
-        user.first_name = "Telegram";
+        user.first_name = "AntoGram";
         user.last_name = "";
         user.status = null;
         user.photo = new TLRPC.TL_userProfilePhotoEmpty();
@@ -5837,7 +5837,7 @@ public class MessagesController extends BaseController implements NotificationCe
         user.phone = "42777";
         user.id = 777000;
         user.verified = true;
-        user.first_name = "Telegram";
+        user.first_name = "AntoGram";
         user.last_name = "Notifications";
         user.status = null;
         user.photo = new TLRPC.TL_userProfilePhotoEmpty();

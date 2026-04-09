@@ -123,7 +123,7 @@ android {
 
 	defaultConfig {
 		versionCode = APP_VERSION_CODE.toInt()
-		minSdk = 21
+		minSdk = 23
 		targetSdk = 36
 		versionName = APP_VERSION_NAME
 		ndkVersion = "21.4.7075529"
@@ -136,7 +136,7 @@ android {
 		externalNativeBuild {
 			cmake {
 				version = "3.10.2"
-				arguments += listOf("-DANDROID_STL=c++_static", "-DANDROID_PLATFORM=android-21")
+				arguments += listOf("-DANDROID_STL=c++_static", "-DANDROID_PLATFORM=android-23")
 			}
 		}
 	}
