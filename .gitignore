@@ -7,6 +7,9 @@ local.properties
 .env
 .env.*
 !.env.example
+*.kotlin_module
+**/.kotlin/
+**/kotlin-compiler-*
 TMessagesProj/.cxx/
 TMessagesProj/jniLibs/
 TMessagesProj/jniRes/
