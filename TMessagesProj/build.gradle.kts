@@ -80,6 +80,38 @@ fun getProps(propName: String): String {
 	return ""
 }
 
+fun getEnvOrProp(propName: String, defaultValue: String): String {
+	return System.getenv(propName)?.takeIf { it.isNotBlank() }
+		?: getProps(propName).takeIf { it.isNotBlank() }
+		?: defaultValue
+}
+
+fun asBuildConfigString(value: String): String {
+	return "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
+}
+
+fun getEnvOrPropInt(propName: String, defaultValue: Int): Int {
+	return getEnvOrProp(propName, defaultValue.toString()).toIntOrNull() ?: defaultValue
+}
+
+fun getEnvOrPropBoolean(propName: String, defaultValue: Boolean): Boolean {
+	return when (getEnvOrProp(propName, defaultValue.toString()).trim().lowercase()) {
+		"1", "true", "yes", "on" -> true
+		"0", "false", "no", "off" -> false
+		else -> defaultValue
+	}
+}
+
+val buildVarsAppId = getEnvOrPropInt("ANTOGRAM_APP_ID", 4)
+val buildVarsAppHash = getEnvOrProp("ANTOGRAM_APP_HASH", "014b35b6184100b085b0d0572f9b5103")
+val buildVarsPlaystoreUrl = getEnvOrProp("ANTOGRAM_PLAYSTORE_APP_URL", "https://play.google.com/store/apps/details?id=org.telegram.messenger")
+val buildVarsGoogleAuthClientId = getEnvOrProp("ANTOGRAM_GOOGLE_AUTH_CLIENT_ID", "760348033671-81kmi3pi84p11ub8hp9a1funsv0rn2p9.apps.googleusercontent.com")
+val buildVarsBillingUnavailable = getEnvOrPropBoolean("ANTOGRAM_IS_BILLING_UNAVAILABLE", false)
+val buildVarsSupportsPasskeys = getEnvOrPropBoolean("ANTOGRAM_SUPPORTS_PASSKEYS", true)
+val buildVarsAppIdField = buildVarsAppId.toString()
+val buildVarsBillingUnavailableField = buildVarsBillingUnavailable.toString()
+val buildVarsSupportsPasskeysField = buildVarsSupportsPasskeys.toString()
+
 android {
 	compileSdk = 36
 	ndkVersion = "21.4.7075529"
@@ -133,6 +165,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "0")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 
 		create("HA_private") {
@@ -148,6 +186,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "1")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 
 		create("HA_public") {
@@ -163,6 +207,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "4")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 
 		create("HA_hardcore") {
@@ -178,6 +228,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "5")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 
 		create("standalone") {
@@ -193,6 +249,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "6")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 
 		getByName("release") {
@@ -209,6 +271,12 @@ android {
 			buildConfigField("boolean", "BUNDLE", "false")
 			buildConfigField("boolean", "BUILD_HOST_IS_WINDOWS", isWindows)
 			buildConfigField("int", "VERSION_NUM", "7")
+			buildConfigField("int", "BUILDVARS_APP_ID", buildVarsAppIdField)
+			buildConfigField("String", "BUILDVARS_APP_HASH", asBuildConfigString(buildVarsAppHash))
+			buildConfigField("String", "BUILDVARS_PLAYSTORE_APP_URL", asBuildConfigString(buildVarsPlaystoreUrl))
+			buildConfigField("String", "BUILDVARS_GOOGLE_AUTH_CLIENT_ID", asBuildConfigString(buildVarsGoogleAuthClientId))
+			buildConfigField("boolean", "BUILDVARS_IS_BILLING_UNAVAILABLE", buildVarsBillingUnavailableField)
+			buildConfigField("boolean", "BUILDVARS_SUPPORTS_PASSKEYS", buildVarsSupportsPasskeysField)
 		}
 	}
 
