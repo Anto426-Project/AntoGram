@@ -75,10 +75,11 @@ object BuildVars {
     }
 
     private fun hasDirectCurrency(): Boolean {
-        if (!BillingController.getInstance().isReady || BillingController.PREMIUM_PRODUCT_DETAILS == null) {
+        if (!BillingController.getInstance().isReady) {
             return false
         }
-        for (offerDetails in BillingController.PREMIUM_PRODUCT_DETAILS.subscriptionOfferDetails ?: emptyList<ProductDetails.SubscriptionOfferDetails>()) {
+        val premiumProductDetails = BillingController.PREMIUM_PRODUCT_DETAILS ?: return false
+        for (offerDetails in premiumProductDetails.subscriptionOfferDetails ?: emptyList<ProductDetails.SubscriptionOfferDetails>()) {
             for (phase in offerDetails.pricingPhases.pricingPhaseList) {
                 for (cur in MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
                     if (phase.priceCurrencyCode == cur) {
