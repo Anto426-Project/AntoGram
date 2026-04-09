@@ -10,6 +10,7 @@ pluginManagement {
 		id("com.google.gms.google-services") version "4.4.4"
 		id("com.google.firebase.crashlytics") version "3.0.6"
 		id("org.jetbrains.kotlin.android") version "2.3.20"
+		id("org.jetbrains.kotlin.plugin.compose") version "2.3.20"
 	}
 }
 plugins {

@@ -1,9 +1,11 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
 	id("com.android.library")
+	id("org.jetbrains.kotlin.plugin.compose")
 }
 
 val APP_VERSION_NAME: String by project
@@ -31,6 +33,12 @@ dependencies {
 	implementation(libs.androidx.camera.camera2)
 	implementation(libs.androidx.camera.lifecycle)
 	implementation(libs.androidx.camera.view)
+	implementation(platform(libs.androidx.compose.bom))
+	implementation(libs.androidx.compose.runtime)
+	implementation(libs.androidx.compose.foundation)
+	implementation(libs.androidx.compose.ui)
+	implementation(libs.androidx.compose.ui.tooling.preview)
+	implementation(libs.androidx.compose.material3)
 
 	implementation(libs.play.services.cast.framework)
 	implementation(libs.androidx.mediarouter)
@@ -66,6 +74,7 @@ dependencies {
 	implementation(libs.recaptcha)
 
 	coreLibraryDesugaring(libs.desugar.jdk.libs)
+	debugImplementation(libs.androidx.compose.ui.tooling)
 }
 
 val isWindows = DefaultNativePlatform.getCurrentOperatingSystem().isWindows().toString()
@@ -158,6 +167,12 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_21
 		targetCompatibility = JavaVersion.VERSION_21
 		isCoreLibraryDesugaringEnabled = true
+	}
+
+	kotlin {
+		compilerOptions {
+			jvmTarget.set(JvmTarget.JVM_21)
+		}
 	}
 
 	defaultConfig {
@@ -307,6 +322,7 @@ android {
 
 	buildFeatures {
 		buildConfig = true
+		compose = true
 	}
 
 	namespace = "org.telegram.messenger"
