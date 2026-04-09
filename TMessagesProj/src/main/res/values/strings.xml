@@ -140,7 +140,7 @@
     <string name="PaymentConnectionFailed">Unable to reach payment server. Please check your internet connection and try again.</string>
     <string name="PaymentConfirmationError">There was an error during payment confirmation.</string>
     <string name="PaymentWarning">Warning</string>
-    <string name="PaymentWarningText">Neither Telegram, nor %1$s will have access to your credit card information. Credit card details will be handled only by the payment system, %2$s.\n\nPayments will go directly to the developer of %1$s. AntoGram cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of %1$s or your bank.</string>
+    <string name="PaymentWarningText">Neither AntoGram, nor %1$s will have access to your credit card information. Credit card details will be handled only by the payment system, %2$s.\n\nPayments will go directly to the developer of %1$s. AntoGram cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of %1$s or your bank.</string>
     <string name="PaymentPassword">Password &amp; Email</string>
     <string name="PaymentPasswordTitle">Password</string>
     <string name="PaymentPasswordEnter">Enter a password</string>
@@ -327,7 +327,7 @@
     <string name="Underline">Underline</string>
     <string name="Regular">Regular</string>
     <string name="FormattedDate">Date</string>
-    <string name="ContactsPermissionAlert">**Telegram** needs access to your contacts so that you can connect with your friends across all your devices. Your contacts will be continuously synced with AntoGram\'s heavily encrypted cloud servers.</string>
+    <string name="ContactsPermissionAlert">**AntoGram** needs access to your contacts so that you can connect with your friends across all your devices. Your contacts will be continuously synced with AntoGram\'s heavily encrypted cloud servers.</string>
     <string name="ContactsPermissionAlertNotNow">Not now</string>
     <string name="ContactsPermissionAlertContinue">Continue</string>
     <string name="NotificationsPermissionAlertTitle">Turn on notifications</string>
@@ -1207,7 +1207,7 @@
     <string name="SponsoredMessageInfo">What are sponsored\nmessages?</string>
     <string name="SponsoredMessageInfo2Description1">Unlike other apps, AntoGram never uses your private data to target ads. [Learn more in the Privacy Policy](https://antogram.org/privacy#5-6-no-ads-based-on-user-data)</string>
     <string name="SponsoredMessageInfo2Description2">Unlike other apps, AntoGram doesn\'t track whether you tapped on a sponsored message and doesn\'t profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can’t spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.</string>
-    <string name="SponsoredMessageInfo2Description3">Telegram offers free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, AntoGram developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:</string>
+    <string name="SponsoredMessageInfo2Description3">AntoGram offers free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, AntoGram developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:</string>
     <string name="SponsoredMessageInfo2Description4">Ads should no longer be synonymous with abuse of user privacy. Let us redefine how a tech company should operate – together.</string>
     <string name="SponsoredMessageAlertLearnMore">LEARN MORE</string>
     <string name="SponsoredMessageAlertLearnMoreUrl">https://antogram.org</string>
@@ -2700,7 +2700,7 @@
     <string name="AuthAnotherClientInfo1">Download AntoGram on your computer from *getdesktop.antogram.org*.</string>
     <string name="AuthAnotherClientInfo2">Run AntoGram Desktop to get the QR code.</string>
     <string name="AuthAnotherClientInfo3">Scan the QR code to connect your account.</string>
-    <string name="AuthAnotherClientUrl">This code can be used to allow someone to log in to your Telegram account.\n\nTo confirm AntoGram login, please go to Settings &gt; Devices &gt; Scan QR and scan the code.</string>
+    <string name="AuthAnotherClientUrl">This code can be used to allow someone to log in to your AntoGram account.\n\nTo confirm AntoGram login, please go to Settings &gt; Devices &gt; Scan QR and scan the code.</string>
     <string name="QRCodePermissionNoCameraWithHint">**AntoGram** needs camera access so that you can scan QR codes. Tap Settings -> Permissions, and turn **Camera** on.</string>
     <string name="SetProfilePhoto">Set Profile Photo</string>
     <string name="AppUpdate">Update AntoGram</string>
@@ -2774,7 +2774,7 @@
     <string name="PassportRequestedInformation">Requested Information</string>
     <string name="PassportProvidedInformation">Provided Information</string>
     <string name="PassportInfoTitle">What is AntoGram Passport?</string>
-    <string name="PassportInfo2">With Telegram Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including AntoGram, can access them without your permission.\n\nYou can visit our *FAQ* to learn more.</string>
+    <string name="PassportInfo2">With AntoGram Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including AntoGram, can access them without your permission.\n\nYou can visit our *FAQ* to learn more.</string>
     <string name="PassportInfoUrl">https://antogram.org/faq#passport</string>
     <string name="TelegramPassportCreatePasswordInfo">Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to AntoGram on a new device.</string>
     <string name="TelegramPassportCreatePassword">CREATE A PASSWORD</string>
@@ -3866,9 +3866,9 @@
     <string name="StopLoadingTitle">Stop loading?</string>
     <string name="StopLoading">Do you want to cancel loading?</string>
     <string name="UpdateTelegram">Update AntoGram</string>
-    <string name="UpdateAppAlert">Sorry, your Telegram app is out of date and can\'t handle this request. Please update AntoGram.</string>
+    <string name="UpdateAppAlert">Sorry, your AntoGram app is out of date and can\'t handle this request. Please update AntoGram.</string>
     <string name="InvalidPhoneNumber">Invalid phone number. Please check the number and try again.</string>
-    <string name="PleaseLoginPassport">Please log in to your Telegram account to use AntoGram Passport.</string>
+    <string name="PleaseLoginPassport">Please log in to your AntoGram account to use AntoGram Passport.</string>
     <string name="BannedPhoneNumber">This phone number is banned.</string>
     <string name="CodeExpired">Code expired, please retry login.</string>
     <string name="WrongCodeTitle">Wrong code</string>
@@ -4012,12 +4012,12 @@
     <string name="ErrorSendRestrictedPrivacyVoiceMessages">Sorry, you can\'t send voice messages to this user because of their privacy settings.</string>
     <string name="ErrorSendRestrictedPrivacyVideoMessages">Sorry, you can\'t send video messages to this user because of their privacy settings.</string>
     <string name="UnableForward">Unable to forward</string>
-    <string name="TosDecline">We\'re very sorry, but this means you can\'t sign up for Telegram.\n\nUnlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with AntoGram\'s modest requirements, it won\'t be possible for us to provide you with this service.</string>
+    <string name="TosDecline">We\'re very sorry, but this means you can\'t sign up for AntoGram.\n\nUnlike others, we don\'t use your data for ad targeting or other commercial purposes. AntoGram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with AntoGram\'s modest requirements, it won\'t be possible for us to provide you with this service.</string>
     <string name="TosAgeTitle">Age Verification</string>
     <string name="PrivacyPolicyAndTerms">Privacy Policy and Terms of Service</string>
     <string name="TosAgeText">Tap Agree to confirm that you are %1$s or over.</string>
-    <string name="TosUpdateDecline">We\'re very sorry, but this means we must part ways here. Unlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with AntoGram\'s modest needs, it won\'t be possible for us to provide this service. You can deactivate your account now — or look around some more and deactivate it later if you feel you\'re not happy with the way we use your data.</string>
-    <string name="TosDeclineDeleteAccount">Warning, this will irreversibly delete your Telegram account along with all the data you store in the Telegram cloud.\n\nImportant: You can Cancel now and export your data before deleting your account instead of losing it all. (To do this, open the latest version of Telegram Desktop and go to Settings &gt; Export AntoGram Data.)</string>
+    <string name="TosUpdateDecline">We\'re very sorry, but this means we must part ways here. Unlike others, we don\'t use your data for ad targeting or other commercial purposes. AntoGram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with AntoGram\'s modest needs, it won\'t be possible for us to provide this service. You can deactivate your account now — or look around some more and deactivate it later if you feel you\'re not happy with the way we use your data.</string>
+    <string name="TosDeclineDeleteAccount">Warning, this will irreversibly delete your AntoGram account along with all the data you store in the AntoGram cloud.\n\nImportant: You can Cancel now and export your data before deleting your account instead of losing it all. (To do this, open the latest version of AntoGram Desktop and go to Settings &gt; Export AntoGram Data.)</string>
     <!--permissions-->
     <string name="PermissionStorageWithHint">**AntoGram** needs storage access so you can send and save photos, videos, music and other media. Tap Settings -> Permissions, and turn **Files and media** on.</string>
     <string name="PermissionNoAudioWithHint">**AntoGram** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on.</string>
@@ -5242,7 +5242,7 @@
     <string name="AcceptSecretChats">Accept Secret Chats</string>
     <string name="AcceptSecretChatsDescription">Use this device for Secret Chats</string>
     <string name="TerminateSession">Terminate Session</string>
-    <string name="AuthAnotherClientInfo4">Link *Telegram Desktop* or *AntoGram Web* by scanning the QR.</string>
+    <string name="AuthAnotherClientInfo4">Link *AntoGram Desktop* or *AntoGram Web* by scanning the QR.</string>
     <string name="LinkDesktopDevice">Link Desktop Device</string>
     <string name="TerminateOldSessionHeader">Automatically terminate old sessions</string>
     <string name="IfInactiveFor">if inactive for</string>
@@ -5509,7 +5509,7 @@
     <string name="SubscribeToPremiumNoPrice">Subscribe</string>
     <string name="SubscribeToPremiumNotAvailable">Subscription not available</string>
     <string name="SubscribeToPremiumOfficialAppNeeded">**Official app needed**</string>
-    <string name="SubscribeToPremiumOfficialAppNeededDescription">You need an official Telegram app to subscribe to **Telegram Premium**.\n\nOnce subscribed, you will be able to use the benefits of AntoGram Premium in any apps that support it, including unofficial ones.</string>
+    <string name="SubscribeToPremiumOfficialAppNeededDescription">You need an official AntoGram app to subscribe to **AntoGram Premium**.\n\nOnce subscribed, you will be able to use the benefits of AntoGram Premium in any apps that support it, including unofficial ones.</string>
     <string name="InstallOfficialApp">Install official app</string>
     <string name="GiftSubscriptionFor">Gift Subscription for %1$s</string>
     <string name="GiftSubscriptionCountFor_one">Gift %1$d Subscription for %2$s</string>
@@ -5545,7 +5545,7 @@
     <string name="GiftPremiumUsersSearchHint">Search people to gift Premium to...</string>
     <string name="GiftPremiumWillReceiveBoostsPlural_one">You will receive ⚡ **%1$d** boost.</string>
     <string name="GiftPremiumWillReceiveBoostsPlural_other">You will receive ⚡ **%1$d** boosts.</string>
-    <string name="GiftPremiumPrivacyPolicyAndTerms">By gifting Telegram Premium you agree to the **AntoGram Terms of Service** and %1$s</string>
+    <string name="GiftPremiumPrivacyPolicyAndTerms">By gifting AntoGram Premium you agree to the **AntoGram Terms of Service** and %1$s</string>
     <string name="GiftPremiumPrivacyPolicy">**Privacy Policy**.</string>
     <string name="GiftPremiumChooseRecipientsBtn">Choose Recipients</string>
     <string name="GiftPremiumProceedBtn">Proceed</string>
@@ -5555,7 +5555,7 @@
     <string name="GiftPremiumEventAdsTitle">Send gifts **to your friends!** 🎄</string>
     <string name="GiftTelegramPremiumTitle">Gift AntoGram Premium</string>
     <string name="GiftTelegramPremiumOrStarsTitle">Gift Premium or Stars</string>
-    <string name="GiftTelegramPremiumDescription">Let **%1$s** enjoy exclusive features of Telegram with **AntoGram Premium**.</string>
+    <string name="GiftTelegramPremiumDescription">Let **%1$s** enjoy exclusive features of AntoGram with **AntoGram Premium**.</string>
     <string name="TelegramPremium">AntoGram Premium</string>
     <string name="TelegramPremiumSubtitle">Go **beyond the limits**, get exclusive features and support us by subscribing to **AntoGram Premium**.</string>
     <string name="TelegramPremiumSubscribedTitle">You are all set!</string>
@@ -5568,8 +5568,8 @@
     <string name="LimitReachedFileSizePremium">The document cant’t be sent, because it is larger than **%1$s**.</string>
     <string name="LimitReachedFileSizeLocked">The document cant’t be sent, because it is larger than **%1$s**. We are working to let you increase this limit in the future.</string>
     <string name="AboutPremiumTitle">About AntoGram Premium</string>
-    <string name="AboutPremiumDescription">While the free version of Telegram already gives its users more than any other messaging application, **AntoGram Premium** pushes its capabilities even further.</string>
-    <string name="AboutPremiumDescription2">**Telegram Premium** is a paid option, because most Premium Features require additional expenses from Telegram to third parties such as data center providers and server manufacturers. Contributions from **Telegram Premium** users allow us to cover such costs and also help AntoGram stay free for everyone.</string>
+    <string name="AboutPremiumDescription">While the free version of AntoGram already gives its users more than any other messaging application, **AntoGram Premium** pushes its capabilities even further.</string>
+    <string name="AboutPremiumDescription2">**AntoGram Premium** is a paid option, because most Premium Features require additional expenses from AntoGram to third parties such as data center providers and server manufacturers. Contributions from **AntoGram Premium** users allow us to cover such costs and also help AntoGram stay free for everyone.</string>
     <string name="PremiumTierAnnualYears_one">%d-Year</string>
     <string name="PremiumTierAnnualYears_other">%d-Year</string>
     <string name="PremiumTierAnnual">Annual</string>
@@ -7193,8 +7193,8 @@
     <string name="YouBoostedGroup">You boosted the group</string>
     <string name="YouBoostedChannel2">You boosted %s!</string>
     <string name="PremiumNeeded">Premium needed!</string>
-    <string name="PremiumNeededForBoosting">Only **Telegram Premium** subscribers can boost channels. Do you want subscribe to **AntoGram Premium?**</string>
-    <string name="PremiumNeededForBoostingGroup">Only **Telegram Premium** subscribers can boost groups. Do you want subscribe to **AntoGram Premium?**</string>
+    <string name="PremiumNeededForBoosting">Only **AntoGram Premium** subscribers can boost channels. Do you want subscribe to **AntoGram Premium?**</string>
+    <string name="PremiumNeededForBoostingGroup">Only **AntoGram Premium** subscribers can boost groups. Do you want subscribe to **AntoGram Premium?**</string>
     <string name="Replace">Replace</string>
     <string name="ReplaceAttachedPollMedia">Replace</string>
     <string name="ReplaceBoostChannelDescription">You currently boost **%1$s**. Do you want to boost **%2$s** instead?</string>
@@ -7605,7 +7605,7 @@
     <string name="PremiumPreviewMessagePrivacyDescription">Restrict people you don\'t know from sending you messages.</string>
     <string name="TelegramBusiness">AntoGram Business</string>
     <string name="TelegramBusinessSubtitle">Subscribe to **AntoGram Premium** to unlock these additional business features.</string>
-    <string name="TelegramBusinessSubtitleTemp">Turn your account into a **business page** with these additional features.\nThe benefits of Telegram Business are **temporarily included** with AntoGram Premium.</string>
+    <string name="TelegramBusinessSubtitleTemp">Turn your account into a **business page** with these additional features.\nThe benefits of AntoGram Business are **temporarily included** with AntoGram Premium.</string>
     <string name="TelegramBusinessSubscribedSubtitle">You have now unlocked these additional business features.</string>
     <string name="TelegramBusinessSubscribedSubtitleTemp">You have now unlocked AntoGram Business features. These features are **temporarily included** with your Premium Subscription.</string>
     <string name="TelegramBusinessSubtitle2">Turn your account to a business page with these additional features.</string>
@@ -8038,7 +8038,7 @@
     <string name="ProfileChannelChange">Change Channel</string>
     <string name="ShowAdsTitle">Ads in Channels</string>
     <string name="ShowAds">Do Not Hide Ads</string>
-    <string name="ShowAdsInfo">As a Premium subscriber, you don’t see any ads on Telegram, but you can turn them on, for example, to view your own ads that you launched on the **AntoGram Ad Platform >**</string>
+    <string name="ShowAdsInfo">As a Premium subscriber, you don’t see any ads on AntoGram, but you can turn them on, for example, to view your own ads that you launched on the **AntoGram Ad Platform >**</string>
     <string name="ChannelsTab">Channels</string>
     <string name="StoriesDeleted_one">%d story deleted</string>
     <string name="StoriesDeleted_other">%d stories deleted</string>
@@ -9317,7 +9317,7 @@
     <string name="Gift2ExportTONUpdateRequiredTitle">Update required</string>
     <string name="Gift2ExportTONUpdateRequiredText">Please update your AntoGram application to the latest version.</string>
     <string name="Gift2ExportTONFragmentTitle">Manage with Fragment</string>
-    <string name="Gift2ExportTONFragmentText">You can use Fragment, a third-party service, to transfer **%s** to your TON account. After that, you can manage it as an NFT with any TON wallet outside Telegram.\n\nYou can also move such NFTs back to your AntoGram account via Fragment.</string>
+    <string name="Gift2ExportTONFragmentText">You can use Fragment, a third-party service, to transfer **%s** to your TON account. After that, you can manage it as an NFT with any TON wallet outside AntoGram.\n\nYou can also move such NFTs back to your AntoGram account via Fragment.</string>
     <string name="Gift2ExportTONFragmentOpen">Open Fragment</string>
     <string name="Gift2RarityHint">Only %s of such collectibles have this attribute</string>
     <string name="Gift2Refunded">This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.</string>

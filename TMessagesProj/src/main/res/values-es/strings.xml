@@ -1090,9 +1090,9 @@
     <string name="StopLoadingTitle">¿Detener la carga?</string>
     <string name="StopLoading">¿Quieres detener la carga?</string>
     <string name="UpdateTelegram">Actualiza AntoGram</string>
-    <string name="UpdateAppAlert">Lo sentimos, tu app de Telegram no está actualizada y no puede procesar esta solicitud. Por favor, actualiza AntoGram.</string>
+    <string name="UpdateAppAlert">Lo sentimos, tu app de AntoGram no está actualizada y no puede procesar esta solicitud. Por favor, actualiza AntoGram.</string>
     <string name="InvalidPhoneNumber">Número de teléfono inválido. Por favor, revisa el número y reinténtalo.</string>
-    <string name="PleaseLoginPassport">Por favor, inicia sesión en tu cuenta de Telegram para usar AntoGram Passport.</string>
+    <string name="PleaseLoginPassport">Por favor, inicia sesión en tu cuenta de AntoGram para usar AntoGram Passport.</string>
     <string name="BannedPhoneNumber">Este número de teléfono está suspendido.</string>
     <string name="CodeExpired">Código expirado. Por favor, empieza de nuevo.</string>
     <string name="WrongCodeTitle">Código incorrecto</string>
@@ -1231,12 +1231,12 @@
     <string name="ErrorSendRestrictedPrivacyVoiceMessages">No puedes enviar mensajes de voz a este usuario debido a sus ajustes de privacidad.</string>
     <string name="ErrorSendRestrictedPrivacyVideoMessages">No puedes enviar videomensajes a este usuario debido a sus ajustes de privacidad.</string>
     <string name="UnableForward">No se pudo reenviar</string>
-    <string name="TosDecline">Lamentablemente, esto significa que no puedes registrarte en Telegram.\n\nA diferencia de otras apps, Telegram no usa los datos de los usuarios para publicidad dirigida u otros propósitos comerciales. Telegram sólo almacena la información que necesita para funcionar como un servicio en la nube. Puedes ajustar cómo usamos tus datos (por ejemplo, eliminar los contactos sincronizados) en los ajustes de privacidad y seguridad.\n\nSi no estás de acuerdo con los modestos requisitos de AntoGram, no podremos brindarte este servicio.</string>
+    <string name="TosDecline">Lamentablemente, esto significa que no puedes registrarte en AntoGram.\n\nA diferencia de otras apps, AntoGram no usa los datos de los usuarios para publicidad dirigida u otros propósitos comerciales. AntoGram sólo almacena la información que necesita para funcionar como un servicio en la nube. Puedes ajustar cómo usamos tus datos (por ejemplo, eliminar los contactos sincronizados) en los ajustes de privacidad y seguridad.\n\nSi no estás de acuerdo con los modestos requisitos de AntoGram, no podremos brindarte este servicio.</string>
     <string name="TosAgeTitle">Verificación de edad</string>
     <string name="PrivacyPolicyAndTerms">Política de privacidad y términos de servicio</string>
     <string name="TosAgeText">Toca Aceptar para confirmar que tienes %1$s o más.</string>
-    <string name="TosUpdateDecline">Lamentablemente, no hay otras opciones. A diferencia de otras apps, Telegram no usa los datos de los usuarios para publicidad dirigida u otros propósitos comerciales. Telegram sólo almacena la información que necesita para funcionar como un servicio en la nube. Puedes ajustar cómo usamos tus datos en los ajustes de privacidad y seguridad.\n\nSi no estás de acuerdo con los modestos requisitos de AntoGram, no podremos brindarte este servicio.</string>
-    <string name="TosDeclineDeleteAccount">Advertencia: Esto eliminará de forma irreversible tu cuenta de Telegram y todos los datos que almacenas en la nube de Telegram.\n\nImportante: Puedes “Cancelar” ahora y exportar tus datos primero en lugar de perderlos. (Para hacerlo, abre la última versión de Telegram Desktop y ve a Ajustes &gt; Avanzados &gt; Exportar datos de AntoGram).</string>
+    <string name="TosUpdateDecline">Lamentablemente, no hay otras opciones. A diferencia de otras apps, AntoGram no usa los datos de los usuarios para publicidad dirigida u otros propósitos comerciales. AntoGram sólo almacena la información que necesita para funcionar como un servicio en la nube. Puedes ajustar cómo usamos tus datos en los ajustes de privacidad y seguridad.\n\nSi no estás de acuerdo con los modestos requisitos de AntoGram, no podremos brindarte este servicio.</string>
+    <string name="TosDeclineDeleteAccount">Advertencia: Esto eliminará de forma irreversible tu cuenta de AntoGram y todos los datos que almacenas en la nube de AntoGram.\n\nImportante: Puedes “Cancelar” ahora y exportar tus datos primero en lugar de perderlos. (Para hacerlo, abre la última versión de AntoGram Desktop y ve a Ajustes &gt; Avanzados &gt; Exportar datos de AntoGram).</string>
     <!--permissions-->
     <string name="PermissionStorageWithHint">**AntoGram** necesita acceso al almacenamiento para que puedas enviar y guardar fotos, videos, música y otros archivos. Toca Ajustes &gt; Permisos, y activa **Archivos y contenido multimedia**.</string>
     <string name="PermissionNoAudioWithHint">**AntoGram** necesita acceso al micrófono para que puedas enviar mensajes de voz. Toca Ajustes &gt; Permisos, y activa **Micrófono**.</string>

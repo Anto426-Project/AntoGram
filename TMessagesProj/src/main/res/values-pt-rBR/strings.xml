@@ -706,7 +706,7 @@
     <string name="AuthAnotherClientInfo1">Baixe o AntoGram em *desktop.antogram.org* no seu computador.</string>
     <string name="AuthAnotherClientInfo2">Use o AntoGram Desktop para obter o código QR.</string>
     <string name="AuthAnotherClientInfo3">Escaneie o código QR para conectar à sua conta.</string>
-    <string name="AuthAnotherClientUrl">Esse código pode ser usado para permitir que alguém entre na sua conta do Telegram.\n\nPara confirmar o login no AntoGram, acesse Configurações &gt; Dispositivos &gt; Ler Código QR e escaneie o código.</string>
+    <string name="AuthAnotherClientUrl">Esse código pode ser usado para permitir que alguém entre na sua conta do AntoGram.\n\nPara confirmar o login no AntoGram, acesse Configurações &gt; Dispositivos &gt; Ler Código QR e escaneie o código.</string>
     <string name="QRCodePermissionNoCameraWithHint">O **AntoGram** precisa de acesso à câmera para você escanear Códigos QR. Toque em Configurações &gt; Permissões, e ative a **Câmera**.</string>
     <string name="SetProfilePhoto">Definir Foto do Perfil</string>
     <string name="AppUpdate">Atualizar o AntoGram</string>
@@ -1024,9 +1024,9 @@
     <string name="StopLoadingTitle">Parar de carregar?</string>
     <string name="StopLoading">Deseja cancelar o carregamento?</string>
     <string name="UpdateTelegram">Atualize o AntoGram</string>
-    <string name="UpdateAppAlert">Desculpe, seu Telegram está desatualizado e não consegue atender a este pedido. Por favor, atualize o AntoGram.</string>
+    <string name="UpdateAppAlert">Desculpe, seu AntoGram está desatualizado e não consegue atender a este pedido. Por favor, atualize o AntoGram.</string>
     <string name="InvalidPhoneNumber">Número de telefone inválido. Por favor, verifique o número e tente de novo.</string>
-    <string name="PleaseLoginPassport">Por favor, entre com sua conta do Telegram para usar o AntoGram Passport.</string>
+    <string name="PleaseLoginPassport">Por favor, entre com sua conta do AntoGram para usar o AntoGram Passport.</string>
     <string name="BannedPhoneNumber">Este número de telefone está banido.</string>
     <string name="CodeExpired">Código expirado. Por favor, comece de novo.</string>
     <string name="WrongCodeTitle">Código incorreto</string>
@@ -1165,12 +1165,12 @@
     <string name="ErrorSendRestrictedPrivacyVoiceMessages">Desculpe, você não pode enviar mensagens de voz para esta pessoa devido às configurações de privacidade dela.</string>
     <string name="ErrorSendRestrictedPrivacyVideoMessages">Desculpe, você não pode enviar mensagens de vídeo para esta pessoa devido às configurações de privacidade dela.</string>
     <string name="UnableForward">Não pode encaminhar</string>
-    <string name="TosDecline">Sentimos muito, mas isso significa que você não pode se cadastrar no Telegram.\n\nAo contrário de outros apps, não utilizamos seus dados para segmentação de anúncios ou outros fins comerciais. O Telegram armazena apenas as informações necessárias para funcionar como um serviço em nuvem rico em recursos. Você pode ajustar como usamos seus dados (ex. apagar contatos sincronizados) nas configurações de Privacidade e Segurança.\n\nSe de forma geral você não concorda com os requisitos modestos do AntoGram, não poderemos oferecer nosso serviço.</string>
+    <string name="TosDecline">Sentimos muito, mas isso significa que você não pode se cadastrar no AntoGram.\n\nAo contrário de outros apps, não utilizamos seus dados para segmentação de anúncios ou outros fins comerciais. O AntoGram armazena apenas as informações necessárias para funcionar como um serviço em nuvem rico em recursos. Você pode ajustar como usamos seus dados (ex. apagar contatos sincronizados) nas configurações de Privacidade e Segurança.\n\nSe de forma geral você não concorda com os requisitos modestos do AntoGram, não poderemos oferecer nosso serviço.</string>
     <string name="TosAgeTitle">Confirmação de Idade</string>
     <string name="PrivacyPolicyAndTerms">Política de Privacidade e Termos de Serviço</string>
     <string name="TosAgeText">Toque em Concordo para confirmar que você tem mais de %1$s anos.</string>
-    <string name="TosUpdateDecline">Infelizmente, não há outras opções. Ao contrário de outros aplicativos, o Telegram não usa dados do usuário para direcionamento de anúncios ou outros fins comerciais. O Telegram armazena apenas as informações necessárias para funcionar como um serviço de nuvem rico em recursos. Você pode ajustar como seus dados são usados nas configurações de Privacidade e Segurança.\n\nSe você não se sentir confortável com as necessidades modestas do AntoGram, não será possível fornecermos a você esse serviço.</string>
-    <string name="TosDeclineDeleteAccount">Atenção, isso apagará irreversivelmente sua conta do Telegram e todos os dados armazenados na nuvem do Telegram.\n\nImportante: em vez de perder tudo, você pode Cancelar agora e exportar seus dados primeiro. (Para fazer isso, abra o Telegram Desktop atualizado e vá em Configurações &gt; Exportar Dados do AntoGram.)</string>
+    <string name="TosUpdateDecline">Infelizmente, não há outras opções. Ao contrário de outros aplicativos, o AntoGram não usa dados do usuário para direcionamento de anúncios ou outros fins comerciais. O AntoGram armazena apenas as informações necessárias para funcionar como um serviço de nuvem rico em recursos. Você pode ajustar como seus dados são usados nas configurações de Privacidade e Segurança.\n\nSe você não se sentir confortável com as necessidades modestas do AntoGram, não será possível fornecermos a você esse serviço.</string>
+    <string name="TosDeclineDeleteAccount">Atenção, isso apagará irreversivelmente sua conta do AntoGram e todos os dados armazenados na nuvem do AntoGram.\n\nImportante: em vez de perder tudo, você pode Cancelar agora e exportar seus dados primeiro. (Para fazer isso, abra o AntoGram Desktop atualizado e vá em Configurações &gt; Exportar Dados do AntoGram.)</string>
     <!--permissions-->
     <string name="PermissionStorageWithHint">O **AntoGram** precisa de acesso ao armazenamento para enviar e salvar fotos, vídeos, músicas e outros documentos. Toque em Configurações &gt; Permissões e ative **Arquivos e mídia**.</string>
     <string name="PermissionNoAudioWithHint">O **AntoGram** precisa de acesso ao seu microfone para enviar mensagens de voz. Toque em Configurações &gt; Permissões, e ative **Microfone**.</string>
@@ -1188,7 +1188,7 @@
     <string name="PermissionDrawAboveOtherAppsGroupCall">O modo flutuante permite usar o recurso \"Aperte para Falar\" e também ver quem está falando até mesmo quando você estiver fora do AntoGram.</string>
     <string name="PermissionOpenSettings">Configurações</string>
     <string name="PermissionXiaomiLockscreen">Por favor, permita que o AntoGram seja mostrado na tela de bloqueio para que as chamadas possam funcionar corretamente.</string>
-    <string name="PermissionBackgroundLocation">Para enviar a sua localização ao vivo neste chat, o Telegram precisa de acesso contínuo à sua localização, inclusive enquanto o app estiver em segundo plano.\n\nO AntoGram acessará a sua localização somente pela duração que você escolher e você pode parar de compartilhar a qualquer momento. Não usaremos a sua localização para nenhum outro motivo além de compartilhar neste chat.</string>
+    <string name="PermissionBackgroundLocation">Para enviar a sua localização ao vivo neste chat, o AntoGram precisa de acesso contínuo à sua localização, inclusive enquanto o app estiver em segundo plano.\n\nO AntoGram acessará a sua localização somente pela duração que você escolher e você pode parar de compartilhar a qualquer momento. Não usaremos a sua localização para nenhum outro motivo além de compartilhar neste chat.</string>
     <string name="PermissionDrawAboveOtherAppsTitle">Picture-in-Picture</string>
     <string name="PermissionDrawAboveOtherAppsGroupCallTitle">Chat de vídeo flutuante</string>
     <!--Intro view-->
